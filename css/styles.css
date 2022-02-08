@@ -4,6 +4,11 @@
           box-sizing: border-box;
 }
 
+body {
+  background: -webkit-gradient(linear, left top, right top, from(#1017be), color-stop(50%, #6558cc), to(black));
+  background: linear-gradient(90deg, #1017be 0%, #6558cc 50%, black 100%);
+}
+
 body #panelReproductor {
   width: 200px;
   height: 200px;

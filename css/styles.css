@@ -28,6 +28,14 @@ body #playerAudio {
   border: 2px solid blueviolet;
 }
 
+body .play {
+  border: solid purple 1em;
+}
+
+body .stop {
+  border: solid green 1em;
+}
+
 body .hidePlayer {
   display: none;
 }

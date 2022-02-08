@@ -4,7 +4,13 @@
           box-sizing: border-box;
 }
 
-body #panelReproductor {
+body header {
+  width: 100%;
+  height: 80px;
+  border: 2px solid blueviolet;
+}
+
+body #playerAudio {
   width: 200px;
   height: 200px;
   border: 2px solid blueviolet;

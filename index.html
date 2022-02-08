@@ -8,19 +8,28 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
+    <header>
+        <div id="applicationName"></div>
+        <div id="generalButtons">
+            <div id="music"></div>
+            <div id="video"></div>
+        </div>
+    </header>
     <main>
-
         <section id="audioSection">
-            <div id="panelReproductor">
+            <div id="playerAudio">
                 <audio controls>
-                    <source src="./src/media/audio/sci_fi_song.wav" type="audio/ogg">
-                    <source src="./src/media/audio/sci_fi_song.wav" type="audio/mpeg">
-                  Your browser does not support the audio element.
+                    <source src="./src/media/audio/1 Into It.mp3" type="audio/ogg">
                 </audio>
             </div>
         </section>
 
         <section id="videoSection">
+            <div id="playerVideo">
+                <video controls>
+                    <source src="./src/media/audio/1 Into It.mp3" >
+                </video>
+            </div>
         </section>
 
     </main>

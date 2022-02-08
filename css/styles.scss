@@ -4,9 +4,20 @@
 }
 
 body{
-    #panelReproductor{
+
+    header{
+
+        width: 100%;
+        height: 80px;
+        border: 2px solid blueviolet;
+
+    }
+
+    #playerAudio{
+
         width: 200px;
         height: 200px;
         border: 2px solid blueviolet;
+
     }
 }

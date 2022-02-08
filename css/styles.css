@@ -10,9 +10,25 @@ body header {
   border: 2px solid blueviolet;
 }
 
+body header #generalButtons #btnMusic {
+  width: 30px;
+  height: 30px;
+  border: solid blue 1em;
+}
+
+body header #generalButtons #btnVideo {
+  width: 30px;
+  height: 30px;
+  border: solid red 1em;
+}
+
 body #playerAudio {
   width: 200px;
   height: 200px;
   border: 2px solid blueviolet;
+}
+
+body .hidePlayer {
+  display: none;
 }
 /*# sourceMappingURL=styles.css.map */

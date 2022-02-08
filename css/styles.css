@@ -1,1 +1,12 @@
-/* No CSS *//*# sourceMappingURL=styles.css.map */
+* {
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body #panelReproductor {
+  width: 200px;
+  height: 200px;
+  border: 2px solid blueviolet;
+}
+/*# sourceMappingURL=styles.css.map */

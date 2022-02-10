@@ -32,7 +32,7 @@ body {
   }
 
   #playerAudio {
-    
+
     #panelReproductor {
       width: 200px;
       height: 200px;
@@ -45,9 +45,15 @@ body {
     .play {
       border: solid purple 1em;
     }
-
-    .stop {
-      border: solid green 1em;
+    .timeCounter{
+        display: flex;
+        width: 150px;
+        height: 40px;
+        border: solid black 4px;
+        justify-content: space-around;
+    }
+    .play{
+        border: solid purple 1em;
     }
 }
     #videoSection{

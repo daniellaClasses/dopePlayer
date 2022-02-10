@@ -1,6 +1,6 @@
 Lista de canciones para el proyecto de MULTIMEDIA:
 
-	propiedades y tracks en JSON: 
+	propiedades y tracks en JSON:
 	id: auto
 	imgSrc:
 	nameTrack:
@@ -8,18 +8,17 @@ Lista de canciones para el proyecto de MULTIMEDIA:
 	audioSrc:
 	dateRelease:
 	[more]
-	
 
-Media Songs 
+Media Songs
 
-- Into it 				by Chase Atlantic
-- Thin White Lies 			by 5SOS
-- The Fixer 				by Brent Morgan
-- VILLAIN 				by K/DA
-- BETELGEUSE				by Yuri
-- AMENO					by ERA
-- LA PAURA DEL BUIO			by Mäneskin
-- Angels Like You			by Miley Cyrus
+- Thin White Lies					by 5SOS
+- Into it							by Chase Atlantic
+- The Fixer							by Brent Morgan
+- VILLAIN							by K/DA
+- BETELGEUSE						by Yuuri
+- AMENO								by ERA
+- LA PAURA DEL BUIO					by Mäneskin
+- Angels Like You					by Miley Cyrus
 - Happier than ever (Heavy Cover)	by Loneliness
 
 
@@ -45,6 +44,27 @@ Media Video
 
 -
 
+nueva canción:
+
+songActual.pause()
+cambiar src
+song.load()
+song.play()
 
 
 
+
+currentTime	Sets or returns the current playback position in the audio/video (in seconds)
+
+para guardar la posición en la que estaba el audio en ese momento
+
+
+
+
+
+{
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(90deg, rgba(68, 0, 255, 1) 10%, rgba(98, 71, 187, 1) 35%, rgba(121, 68, 207, 1) 60%, rgba(63, 5, 83, 1) 96%);
+
+}

@@ -31,7 +31,6 @@ var musicGallery = [
 )();
 
 function changePlayer() {
-    
     if (this.id == "btnMusic") {
         DOM.audioSection.classList.remove("hidePlayer");
         DOM.videoSection.classList.add("hidePlayer");
@@ -50,7 +49,7 @@ function audioStop() {
 }
 
 function changeVolume() {
-    
+
     let level = DOM.volume.value;
     DOM.audioPlayer.volume = level;
 

@@ -4,7 +4,6 @@
           box-sizing: border-box;
 }
 
-<<<<<<< HEAD
 body header {
   width: 100%;
   height: 80px;
@@ -24,20 +23,25 @@ body header #generalButtons #btnVideo {
 }
 
 body #playerAudio {
-=======
-body {
   background: -webkit-gradient(linear, left top, right top, from(#1017be), color-stop(50%, #6558cc), to(black));
   background: linear-gradient(90deg, #1017be 0%, #6558cc 50%, black 100%);
 }
 
-body #panelReproductor {
->>>>>>> 36f26f02cf8ffe2ec503655cd46c888dec226031
+body #playerAudio #panelReproductor {
   width: 200px;
   height: 200px;
   border: 2px solid blueviolet;
 }
 
-body .timeCounter {
+body #playerAudio .escondido {
+  display: none;
+}
+
+body #playerAudio .play {
+  border: solid purple 1em;
+}
+
+body #playerAudio .timeCounter {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -48,12 +52,12 @@ body .timeCounter {
       justify-content: space-around;
 }
 
-body .play {
+body #playerAudio .play {
   border: solid purple 1em;
 }
 
-body .stop {
-  border: solid green 1em;
+body #videoSection {
+  display: none;
 }
 
 body .hidePlayer {

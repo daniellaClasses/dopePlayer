@@ -49,9 +49,11 @@ const playlist = [{
             {
                 id:1,
                 nameVideo: "",
+                videoSrc: ""
             },
             {
-
+                id: 2,
+                nameVideo: "",
             }
         ]
 

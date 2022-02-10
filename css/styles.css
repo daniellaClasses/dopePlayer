@@ -4,6 +4,11 @@
           box-sizing: border-box;
 }
 
+body {
+  background: -webkit-gradient(linear, left top, right top, from(#1017be), color-stop(50%, #6558cc), to(black));
+  background: linear-gradient(90deg, #1017be 0%, #6558cc 50%, black 100%);
+}
+
 body header {
   width: 100%;
   height: 80px;
@@ -20,11 +25,6 @@ body header #generalButtons #btnVideo {
   width: 30px;
   height: 30px;
   border: solid red 1em;
-}
-
-body #playerAudio {
-  background: -webkit-gradient(linear, left top, right top, from(#1017be), color-stop(50%, #6558cc), to(black));
-  background: linear-gradient(90deg, #1017be 0%, #6558cc 50%, black 100%);
 }
 
 body #playerAudio #panelReproductor {

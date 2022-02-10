@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
+
 <body>
     <header>
         <div id="applicationName"></div>
@@ -14,12 +16,19 @@
             <div id="btnMusic"></div>
             <div id="btnVideo"></div>
         </div>
+
     </header>
     <main>
         <section id="audioSection">
             <div id="playerAudio">
                 <audio>
                     <source src="./src/media/audio/1 Into It.mp3" type="audio/ogg">
+                </audio>
+            </div>
+            <div id="panelReproductor">
+                <audio controls>
+                    <source src="./src/media/audio/1 Into It.mp3" type="audio/mp3">
+                    Your browser does not support the audio element.
                 </audio>
                 <div class="play">play</div>
                 <div class="stop">stop</div>
@@ -38,4 +47,5 @@
     </main>
     <script src="./js/script.js"></script>
 </body>
+
 </html>

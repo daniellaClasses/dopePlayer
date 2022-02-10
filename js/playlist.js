@@ -31,23 +31,24 @@ const playlist = [{
             },
             {
                 id: 5,
-                nameTrack: "2 Into It.mp3",
-                nameArtist: "Chase Atlantic",
-                audioSrc: "../src/media/audio/2 Into It.mp3",
-                imgSrc: "../img/02song.jpg",
+                nameTrack: "5 Angels Like You.mp3",
+                nameArtist: "Miley Cyrus",
+                audioSrc: "../src/media/audio/5 Angels Like You.mp3",
+                imgSrc: "../img/05song.jpg",
             },
             {
                 id: 6,
-                nameTrack: "2 Into It.mp3",
-                nameArtist: "Chase Atlantic",
-                audioSrc: "../src/media/audio/2 Into It.mp3",
-                imgSrc: "../img/02song.jpg",
+                nameTrack: "6 Betelgeuse.mp3",
+                nameArtist: "Yuuri",
+                audioSrc: "../src/media/audio/6 BETELGEUSE.mp3",
+                imgSrc: "../img/06song.jpg",
             }
         ],
     videos:
         [
             {
-
+                id:1,
+                nameVideo: "",
             },
             {
 

@@ -4,17 +4,28 @@
 }
 
 body {
-
+  // background: linear-gradient(
+  //     90deg,
+  //     rgba(16, 23, 190, 1) 0%,
+  //     rgba(101, 88, 204, 1) 50%,
+  //     rgba(0, 0, 0, 1) 100%
+  //   );
   background: linear-gradient(
-      90deg,
-      rgba(16, 23, 190, 1) 0%,
-      rgba(101, 88, 204, 1) 50%,
-      rgba(0, 0, 0, 1) 100%
-    );
+    90deg,
+    rgba(220, 220, 139, 1) 0%,
+    rgba(142, 202, 210, 1) 50%,
+    rgb(197, 138, 229) 100%
+  );
+
+  //Modo noche
+  /*background:linear-gradient(90deg, rgba(214, 123, 49, 1) 0%, rgba(113, 31, 88, 1) 50%, rgba(37, 33, 107, 1) 100%);*/
   header {
-    width: 100%;
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
     height: 80px;
     border: 2px solid blueviolet;
+    border-radius: 10px;
 
     #generalButtons {
       #btnMusic {
@@ -30,39 +41,95 @@ body {
       }
     }
   }
+  main {
+    //---------------------------------------------------------  EMPIEZA LA PARTE DE AUDIO -------------------------------------------------------------------------
+    #audioSection {
+      margin: auto;
+      margin-top: 10px;
+      width: 91%;
+      height: 80vh;
+      border: solid darkblue 2px;
+      border-radius: 10px;
+      padding: 4px;
+      display: flex;
+      justify-content: space-around;
 
-  #playerAudio {
+      #containerPlayer {
+        width: 33%;
+        border: 2px solid purple;
+        border-radius: 10px;
 
-    #panelReproductor {
-      width: 200px;
-      height: 200px;
-      border: 2px solid blueviolet;
-    }
+        #playerAudio {
+          width: 95%;
+          height: 250px;
+        }
 
-    .escondido {
-      display: none;
-    }
-    .play {
-      border: solid purple 1em;
-    }
-    .timeCounter{
+        .controls {
+          display: flex;
+          justify-content: space-around;
+          .play,
+          .stop {
+            border: solid purple 2px;
+          }
+        }
+
+        // .play {
+        //   border: solid purple 1em;
+        // }
+        .timeCounter {
+          display: flex;
+          width: 100%;
+          height: 40px;
+          // border: solid black 4px;
+          justify-content: space-between;
+          align-items: center;
+
+          // .timeNow{
+          // }
+          // .timeEnd{
+          // }
+        }
+      }
+      //----------------------------------------------------  PARTE LATERAL DERECHA: PLAYLIST ------------------------------------------------------------------
+
+      #playerPlaylist {
+        width: 65%;
+        border: 2px solid purple;
+        border-radius: 10px;
+        padding: 5px;
         display: flex;
-        width: 150px;
-        height: 40px;
-        border: solid black 4px;
-        justify-content: space-around;
-    }
-    .play{
-        border: solid purple 1em;
-    }
-}
-    #videoSection{
+        flex-direction: column;
+        gap: 2px;
 
-        display: none;
-    }
+        #titlePlaylist {
+          border: 1px solid blueviolet;
+          text-align: center;
+        }
 
-    .hidePlayer {
+        #partPlaylist {
+          border: 1px solid blueviolet;
+        }
+      }
+    }
+    //---------------------------------------------------------  TERMINA LA PARTE DE AUDIO -------------------------------------------------------------------------
+
+    //---------------------------------------------------------  EMPIEZA LA PARTE DE VÍDEO -------------------------------------------------------------------------
+    #videoSection {
+      // display: none;
+      margin: auto;
+      margin-top: 10px;
+      width: 91%;
+      height: 80vh;
+      border: solid darkblue 2px;
+      border-radius: 10px;
+      padding: 4px;
+    }
+    //---------------------------------------------------------  TERMINA LA PARTE DE VÍDEO -------------------------------------------------------------------------
+
+
+
+    #audioSection.hidePlayer, #videoSection.hidePlayer {
       display: none;
     }
-
-}
+  }
+  }

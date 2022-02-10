@@ -20,32 +20,43 @@
     </header>
     <main>
         <section id="audioSection">
-            <div id="playerAudio">
-                <audio>
-                    <source src="./src/media/audio/1 Thin White Lies.mp3" type="audio/ogg">
-                </audio>
+            <div id="containerPlayer">
+                <div id="playerAudio">
+                    <audio>
+                        <source src="./src/media/audio/1 Thin White Lies.mp3" type="audio/ogg">
+                    </audio>
+                </div>
+                <div class="timeCounter">
+                    <span class="timeNow"></span>
+                    <span class="timeEnd"></span>
+                </div>
+                <input type="range" name="" id="" class="volume" min="0" max="1" step="0.01" value="0.2">
+                <div class="play">play</div>
+                <div class="stop">stop</div>
             </div>
-            <div class="timeCounter">
-                <span class="timeNow"></span>
-                <span class="timeEnd"></span>
+
+            <div id="playerPlaylist">
+                <div id="titlePlaylist">
+                    <h3> Lista de canciones</h3>
+                </div>
+                <div id="partPlaylist">
+
+                </div>
             </div>
-            <input type="range" name="" id="" class="volume" min="0" max="1" step="0.01" value="0.5">
-            <div class="play">play</div>
-            <div class="stop">stop</div>
         </section>
 
 
 
-        <!-- <section id="videoSection" class="escondido"> -->
         <section id="videoSection" class="hidePlayer">
             <div id="playerVideo">
                 <video controls>
-                    <source src="./src/media/audio/1 Into It.mp3" >
+                    <source src="./src/media/audio/2 Into It.mp3">
                 </video>
             </div>
         </section>
 
     </main>
+    <!-- <script src="./js/playlist.js"></script> -->
     <script src="./js/script.js"></script>
 </body>
 

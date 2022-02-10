@@ -25,7 +25,7 @@ const playlist = [{
             {
                 id: 4,
                 nameTrack: "4 La Paura del Buio.mp3",
-                nameArtist: "Mäneskin",
+                nameArtist: "Måneskin",
                 audioSrc: "../src/media/audio/4 LA PAURA DEL BUIO.mp3",
                 imgSrc: "../img/04song.jpg",
             },
@@ -58,4 +58,4 @@ const playlist = [{
         ]
 
 }]
-export default "playlist.js";
+// export playlist;

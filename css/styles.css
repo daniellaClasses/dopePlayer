@@ -5,14 +5,18 @@
 }
 
 body {
-  background: -webkit-gradient(linear, left top, right top, from(#1017be), color-stop(50%, #6558cc), to(black));
-  background: linear-gradient(90deg, #1017be 0%, #6558cc 50%, black 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#dcdc8b), color-stop(50%, #8ecad2), to(#c58ae5));
+  background: linear-gradient(90deg, #dcdc8b 0%, #8ecad2 50%, #c58ae5 100%);
+  /*background:linear-gradient(90deg, rgba(214, 123, 49, 1) 0%, rgba(113, 31, 88, 1) 50%, rgba(37, 33, 107, 1) 100%);*/
 }
 
 body header {
-  width: 100%;
+  width: 95%;
+  margin: auto;
+  margin-top: 10px;
   height: 80px;
   border: 2px solid blueviolet;
+  border-radius: 10px;
 }
 
 body header #generalButtons #btnMusic {
@@ -27,40 +31,94 @@ body header #generalButtons #btnVideo {
   border: solid red 1em;
 }
 
-body #playerAudio #panelReproductor {
-  width: 200px;
-  height: 200px;
-  border: 2px solid blueviolet;
-}
-
-body #playerAudio .escondido {
-  display: none;
-}
-
-body #playerAudio .play {
-  border: solid purple 1em;
-}
-
-body #playerAudio .timeCounter {
+body main #audioSection {
+  margin: auto;
+  margin-top: 10px;
+  width: 91%;
+  height: 80vh;
+  border: solid darkblue 2px;
+  border-radius: 10px;
+  padding: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 150px;
-  height: 40px;
-  border: solid black 4px;
   -ms-flex-pack: distribute;
       justify-content: space-around;
 }
 
-body #playerAudio .play {
-  border: solid purple 1em;
+body main #audioSection #containerPlayer {
+  width: 33%;
+  border: 2px solid purple;
+  border-radius: 10px;
 }
 
-body #videoSection {
-  display: none;
+body main #audioSection #containerPlayer #playerAudio {
+  width: 95%;
+  height: 250px;
 }
 
-body .hidePlayer {
+body main #audioSection #containerPlayer .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+body main #audioSection #containerPlayer .controls .play,
+body main #audioSection #containerPlayer .controls .stop {
+  border: solid purple 2px;
+}
+
+body main #audioSection #containerPlayer .timeCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body main #audioSection #playerPlaylist {
+  width: 65%;
+  border: 2px solid purple;
+  border-radius: 10px;
+  padding: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2px;
+}
+
+body main #audioSection #playerPlaylist #titlePlaylist {
+  border: 1px solid blueviolet;
+  text-align: center;
+}
+
+body main #audioSection #playerPlaylist #partPlaylist {
+  border: 1px solid blueviolet;
+}
+
+body main #videoSection {
+  margin: auto;
+  margin-top: 10px;
+  width: 91%;
+  height: 80vh;
+  border: solid darkblue 2px;
+  border-radius: 10px;
+  padding: 4px;
+}
+
+body main #audioSection.hidePlayer, body main #videoSection.hidePlayer {
   display: none;
 }
 /*# sourceMappingURL=styles.css.map */

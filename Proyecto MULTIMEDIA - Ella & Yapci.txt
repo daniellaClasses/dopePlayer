@@ -44,6 +44,13 @@ Media Video
 
 -
 
+nueva canción:
+
+songActual.pause()
+cambiar src
+song.load()
+song.play()
+
 
 
 

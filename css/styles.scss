@@ -1,19 +1,59 @@
-*{
-    margin: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  box-sizing: border-box;
 }
 
-body{
-    background:linear-gradient(90deg, rgba(16, 23, 190, 1) 0%, rgba(101, 88, 204, 1) 50%, rgba(0, 0, 0, 1) 100%);
-    #panelReproductor{
-        width: 200px;
-        height: 200px;
-        border: 2px solid blueviolet;
+body {
+  header {
+    width: 100%;
+    height: 80px;
+    border: 2px solid blueviolet;
+
+    #generalButtons {
+      #btnMusic {
+        width: 30px;
+        height: 30px;
+        border: solid blue 1em;
+      }
+
+      #btnVideo {
+        width: 30px;
+        height: 30px;
+        border: solid red 1em;
+      }
+    }
+  }
+
+  #playerAudio {
+    background: linear-gradient(
+      90deg,
+      rgba(16, 23, 190, 1) 0%,
+      rgba(101, 88, 204, 1) 50%,
+      rgba(0, 0, 0, 1) 100%
+    );
+    #panelReproductor {
+      width: 200px;
+      height: 200px;
+      border: 2px solid blueviolet;
     }
 
-
-
-    .escondido{
-        display: none;
+    .escondido {
+      display: none;
     }
+    .play {
+      border: solid purple 1em;
+    }
+
+    .stop {
+      border: solid green 1em;
+    }
+    // #videoSection{
+
+    //     display: none;
+    // }
+
+    .hidePlayer {
+      display: none;
+    }
+  }
 }

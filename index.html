@@ -11,23 +11,42 @@
 
 <body>
     <header>
-        
+        <div id="applicationName"></div>
+        <div id="generalButtons">
+            <div id="btnMusic"></div>
+            <div id="btnVideo"></div>
+        </div>
+
     </header>
     <main>
-
         <section id="audioSection">
+            <div id="playerAudio">
+                <audio>
+                    <source src="./src/media/audio/1 Into It.mp3" type="audio/ogg">
+                </audio>
+            </div>
             <div id="panelReproductor">
                 <audio controls>
                     <source src="./src/media/audio/2 Into It.mp3" type="audio/mp3">
                     Your browser does not support the audio element.
                 </audio>
+                <div class="play">play</div>
+                <div class="stop">stop</div>
+                <input type="range" name="" id="" class="volume" min="0" max="1" step="0.01" value="0.5">
             </div>
         </section>
 
-        <section id="videoSection" class="escondido">
+        <!-- <section id="videoSection" class="escondido"> -->
+        <section id="videoSection" class="hidePlayer">
+            <div id="playerVideo">
+                <video controls>
+                    <source src="./src/media/audio/1 Into It.mp3" >
+                </video>
+            </div>
         </section>
 
     </main>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>

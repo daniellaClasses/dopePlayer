@@ -4,14 +4,48 @@
           box-sizing: border-box;
 }
 
+<<<<<<< HEAD
+body header {
+  width: 100%;
+  height: 80px;
+  border: 2px solid blueviolet;
+}
+
+body header #generalButtons #btnMusic {
+  width: 30px;
+  height: 30px;
+  border: solid blue 1em;
+}
+
+body header #generalButtons #btnVideo {
+  width: 30px;
+  height: 30px;
+  border: solid red 1em;
+}
+
+body #playerAudio {
+=======
 body {
   background: -webkit-gradient(linear, left top, right top, from(#1017be), color-stop(50%, #6558cc), to(black));
   background: linear-gradient(90deg, #1017be 0%, #6558cc 50%, black 100%);
 }
 
 body #panelReproductor {
+>>>>>>> 36f26f02cf8ffe2ec503655cd46c888dec226031
   width: 200px;
   height: 200px;
   border: 2px solid blueviolet;
+}
+
+body .play {
+  border: solid purple 1em;
+}
+
+body .stop {
+  border: solid green 1em;
+}
+
+body .hidePlayer {
+  display: none;
 }
 /*# sourceMappingURL=styles.css.map */

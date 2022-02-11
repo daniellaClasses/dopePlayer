@@ -10,6 +10,7 @@ const DOM = {
     audioSection: document.querySelector("#audioSection"),
     audioPlayer: document.querySelector("#playerAudio").querySelector("audio"),
     playlistPart: document.querySelector("#partPlaylist"),
+    songElection: document.querySelector(".displaySong"),
     videoSection: document.querySelector("#videoSection"),
     videoPlayer: document.querySelector("#playerVideo").querySelector("video"),
     play: document.querySelector(".play"),
@@ -25,40 +26,40 @@ let playlistJSON = `[
             [
                 {
                     "id": 1,
-                    "nameTrack": "1 Thin White Lies.mp3",
+                    "nameTrack": "Thin White Lies",
                     "nameArtist": "5 Seconds of Summer",
                     "audioSrc": "../src/media/audio/1 Thin White Lies.mp3",
                     "imgSrc": "../img/01song.jpg"
                 },
                 {
                     "id": 2,
-                    "nameTrack": "2 Into It.mp3",
+                    "nameTrack": "Into It",
                     "nameArtist": "Chase Atlantic",
                     "audioSrc": "../src/media/audio/2 Into It.mp3",
                     "imgSrc": "../img/02song.jpg"
                 },
                 {
                     "id": 3,
-                    "nameTrack": "3 The Fixer.mp3",
+                    "nameTrack": "The Fixer",
                     "nameArtist": "Brent Morgan",
                     "audioSrc": "../src/media/audio/3 The Fixer.mp3",
-                    "imgSrc": "../img/03song.jpg"
+                    "imgSrc": "../img/03song.png"
                 },
                 {
-                    "id": 4, "nameTrack": "4 La Paura del Buio.mp3",
+                    "id": 4, "nameTrack": "La Paura del Buio",
                     "nameArtist": "Måneskin",
                     "audioSrc": "../src/media/audio/4 LA PAURA DEL BUIO.mp3",
                     "imgSrc": "../img/04song.jpg"
                 }, {
                     "id": 5,
-                    "nameTrack": "5 Angels Like You.mp3",
+                    "nameTrack": "Angels Like You",
                     "nameArtist": "Miley Cyrus",
                     "audioSrc": "../src/media/audio/5 Angels Like You.mp3",
                     "imgSrc": "../img/05song.jpg"
                 },
                 {
                     "id": 6,
-                    "nameTrack": "6 Betelgeuse.mp3",
+                    "nameTrack": "Betelgeuse",
                     "nameArtist": "Yuuri",
                     "audioSrc": "../src/media/audio/6 BETELGEUSE.mp3",
                     "imgSrc": "../img/06song.jpg"
@@ -95,7 +96,6 @@ let playlistJSON = `[
     DOM.audioPlayer.addEventListener("loadstart", loadTime);
     DOM.audioPlayer.addEventListener("timeupdate", loadTime);
 
-
     //generar playlist
     generatePlaylist();
 }
@@ -125,12 +125,23 @@ function audioStop() {
     DOM.audioPlayer.pause();
 }
 
-function playVideo(){
+function audioLoad() {
+    DOM.audioPlayer.load();
+}
+
+
+
+
+function playVideo() {
     DOM.videoPlayer.play();
 }
 
-function videoStop(){
+function videoStop() {
     DOM.videoPlayer.pause();
+}
+
+function videoLoad() {
+    DOM.videoPlayer.load();
 }
 
 function changeVolume() {
@@ -157,6 +168,9 @@ function loadTime() {
     }
 
 }
+
+
+
 
 function calculateTime(times) {
 
@@ -194,35 +208,78 @@ function calculateTime(times) {
     return result;
 }
 
-function generatePlaylist(){
-    console.log("Llego bien");
+function generatePlaylist() {
+    cleanPreviousContent(DOM.playlistPart);
     //creamos la lista
     let elementsList = document.createElement("ol");
-    var listMedia = JSON.parse(playlistJSON);
-    console.log(listMedia);
-    listMedia.songs.forEach(song => {
+    let listMedia = JSON.parse(playlistJSON);
+    listMedia = Array.from(listMedia);
+    // console.log(listMedia);
+    listMedia[0].songs.forEach(song => {
         //creamos el elemento li para cada uno de la lista
         let element = document.createElement("li");
+        element.addEventListener("click", changeCurrentSong);
+        element.setAttribute("title", song.nameTrack);
+
+        let containerInfo = document.createElement("div");
+        containerInfo.classList.add("displaySong");
 
         //añadimos imagen
         let divImagen = document.createElement("div");
-        divImagen.style.backgroundImage(song.imgSrc);
-        element.appendChild(divImagen);
+        divImagen.classList.add("tamaniosImg");
+        divImagen.style.backgroundImage = "url(" + song.imgSrc + ")";
+        containerInfo.appendChild(divImagen);
 
         let divInfo = document.createElement("div");
 
-        let infoTitle = document.createElement("p");
+        let infoTitle = document.createElement("h3");
         infoTitle.textContent = song.nameTrack;
         divInfo.appendChild(infoTitle);
 
-        let infoArtist = document.createElement("p");
+        let infoArtist = document.createElement("h5");
         infoArtist.textContent = song.nameArtist;
         divInfo.appendChild(infoArtist);
 
-        element.appendChild(divInfo);
-
+        containerInfo.appendChild(divInfo);
+        element.appendChild(containerInfo);
         elementsList.appendChild(element);
     });
 
+    DOM.playlistPart.appendChild(elementsList);
+}
 
+function cleanPreviousContent(section) {
+    if (section.hasChildNodes) {
+        section.childNodes.forEach(element => {
+            element.parentElement.replaceChildren();
+        }
+        );
+    }
+}
+
+
+function changeCurrentSong() {
+    // console.log(this.title);
+    let selectedSong = this.title;
+
+    audioStop();
+    let listMedia = JSON.parse(playlistJSON);
+    listMedia = Array.from(listMedia);
+    listMediaSongs = Array.from(listMedia[0].songs);
+
+    let newSong = listMediaSongs.find(search => {
+        return search.nameTrack == selectedSong;
+    });
+    console.log(newSong);
+
+    let source = DOM.audioPlayer.querySelector("source");
+    source.setAttribute("src", newSong.audioSrc);
+    audioLoad();
+    changeCurrentInfoSong(newSong);
+    // playAudio();
+}
+
+
+function changeCurrentInfoSong(songObject){
+    let trackNameSpace = document.querySelector("#nowPlayingTitle");
 }

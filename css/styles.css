@@ -19,13 +19,13 @@ body header {
   border-radius: 10px;
 }
 
-body header #generalButtons #btnMusic {
+body header #btnMusic {
   width: 30px;
   height: 30px;
   border: solid blue 1em;
 }
 
-body header #generalButtons #btnVideo {
+body header #btnVideo {
   width: 30px;
   height: 30px;
   border: solid red 1em;
@@ -85,7 +85,7 @@ body main #audioSection #containerPlayer .timeCounter {
 }
 
 body main #audioSection #playerPlaylist {
-  width: 65%;
+  width: 60%;
   border: 2px solid purple;
   border-radius: 10px;
   padding: 5px;
@@ -96,16 +96,59 @@ body main #audioSection #playerPlaylist {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 2px;
+  overflow: auto;
 }
 
 body main #audioSection #playerPlaylist #titlePlaylist {
-  border: 1px solid blueviolet;
   text-align: center;
 }
 
 body main #audioSection #playerPlaylist #partPlaylist {
-  border: 1px solid blueviolet;
+  border: 2px solid blueviolet;
+  padding: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body main #audioSection #playerPlaylist .displaySong {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border: 2px solid purple;
+  border-radius: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 5px;
+  margin: 5px 0 5px 0;
+}
+
+body main #audioSection #playerPlaylist .displaySong :nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 50%;
+}
+
+body main #audioSection #playerPlaylist .tamaniosImg {
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 10px;
 }
 
 body main #videoSection {
@@ -118,7 +161,8 @@ body main #videoSection {
   padding: 4px;
 }
 
-body main #audioSection.hidePlayer, body main #videoSection.hidePlayer {
+body main #audioSection.hidePlayer,
+body main #videoSection.hidePlayer {
   display: none;
 }
 /*# sourceMappingURL=styles.css.map */

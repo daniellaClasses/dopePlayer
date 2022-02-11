@@ -272,7 +272,7 @@ function changeCurrentSong() {
         return search.id == selectedSong;
         // return search.nameTrack == selectedSong;
     });
-    console.log(newSong);
+    // console.log(newSong);
 
     let source = DOM.audioPlayer.querySelector("source");
     source.setAttribute("src", newSong.audioSrc);

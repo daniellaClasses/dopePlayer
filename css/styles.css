@@ -2,6 +2,7 @@
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  font-family: 'Big Shoulders Inline Text', cursive;
 }
 
 body {
@@ -104,7 +105,6 @@ body main #audioSection #playerPlaylist #titlePlaylist {
 }
 
 body main #audioSection #playerPlaylist #partPlaylist {
-  border: 2px solid blueviolet;
   padding: 6px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -119,7 +119,7 @@ body main #audioSection #playerPlaylist .displaySong {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  border: 2px solid purple;
+  border: 2px solid #260080;
   border-radius: 10px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;

@@ -1,6 +1,7 @@
 * {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Big Shoulders Inline Text', cursive;
 }
 
 @mixin propComunes() {
@@ -64,6 +65,7 @@ body {
         width: 33%;
         border: 2px solid purple;
         border-radius: 10px;
+        // font-family: 'Loved by the King', cursive;
 
         #playerAudio {
           width: 95%;
@@ -79,9 +81,7 @@ body {
           }
         }
 
-        // .play {
-        //   border: solid purple 1em;
-        // }
+
         .timeCounter {
           display: flex;
           width: 100%;
@@ -105,6 +105,7 @@ body {
         padding: 5px;
         display: flex;
         flex-direction: column;
+        // font-family: 'Festive', cursive;//poner en el modo noche
         // row-gap: 10px;
         // overflow-y: scroll;
 overflow: auto;
@@ -115,7 +116,7 @@ overflow: auto;
         }
 
         #partPlaylist {
-          border: 2px solid blueviolet;
+          // border: 2px solid blueviolet;
           padding: 6px;
           display: flex;
           flex-direction: column;
@@ -129,7 +130,7 @@ overflow: auto;
 
         .displaySong{
           display: flex;
-          border: 2px solid purple;
+          border: 2px solid rgb(38, 0, 128);
           border-radius: 10px;
           justify-content: space-between;
           padding: 5px;

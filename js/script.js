@@ -219,7 +219,8 @@ function generatePlaylist() {
         //creamos el elemento li para cada uno de la lista
         let element = document.createElement("li");
         element.addEventListener("click", changeCurrentSong);
-        element.setAttribute("title", song.nameTrack);
+        element.setAttribute("title", song.id);
+        // element.setAttribute("title", song.nameTrack);
 
         let containerInfo = document.createElement("div");
         containerInfo.classList.add("displaySong");
@@ -268,7 +269,8 @@ function changeCurrentSong() {
     listMediaSongs = Array.from(listMedia[0].songs);
 
     let newSong = listMediaSongs.find(search => {
-        return search.nameTrack == selectedSong;
+        return search.id == selectedSong;
+        // return search.nameTrack == selectedSong;
     });
     console.log(newSong);
 
@@ -276,10 +278,14 @@ function changeCurrentSong() {
     source.setAttribute("src", newSong.audioSrc);
     audioLoad();
     changeCurrentInfoSong(newSong);
-    // playAudio();
+    playAudio();
 }
 
 
 function changeCurrentInfoSong(songObject){
-    let trackNameSpace = document.querySelector("#nowPlayingTitle");
+    let trackNameSpace = document.querySelector("#nowPlayingSong").querySelector(".nowPlayingTitle");
+    trackNameSpace.textContent = songObject.nameTrack;
+
+    let artistNameSpace =document.querySelector("#nowPlayingSong").querySelector(".nowPlayingArtist");
+    artistNameSpace.textContent = songObject.nameArtist;
 }

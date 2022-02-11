@@ -33,10 +33,12 @@ Media Video
 - cambiar colores body animándolos mientras estén en play y pararlo cuando esté en stop
 - cómo hacer la barra de reproducción
 - programar el autogenerate de subtitulos para convertirla en una IA que cree cuantas más reproducciones tenga, se vaya a generar subtítulos sólidos.
-- buscar videos
+- buscar videos (los tenemos)
 - subtitulos buscar cómo se hacen
 - opción loop, añadimos un botón que si le pulsas le añade el atributo
-
+- opción repetir canción
+- cambiar this.title = name por this.title = id -- done
+- hacer previous y next one con control de posiciones
 
 
 
@@ -68,3 +70,5 @@ para guardar la posición en la que estaba el audio en ese momento
     background:linear-gradient(90deg, rgba(68, 0, 255, 1) 10%, rgba(98, 71, 187, 1) 35%, rgba(121, 68, 207, 1) 60%, rgba(63, 5, 83, 1) 96%);
 
 }
+
+

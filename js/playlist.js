@@ -58,4 +58,4 @@ const playlist = [{
         ]
 
 }]
-// export playlist;
+// export default playlist;

@@ -1,7 +1,5 @@
 // import "playlist.js";
-// import { playlist } from "./playlist.js";
-
-
+// import  playlist  from './playlist';
 
 
 const DOM = {
@@ -118,7 +116,12 @@ function changePlayer() {
 }
 
 function playAudio() {
-    DOM.audioPlayer.play();
+    // let nino = DOM.audioPlayer.querySelector("source").getAttribute("src");
+
+    // if () {
+    // } else {
+        // }
+            DOM.audioPlayer.play();
 }
 
 function audioStop() {
@@ -286,6 +289,9 @@ function changeCurrentInfoSong(songObject){
     let trackNameSpace = document.querySelector("#nowPlayingSong").querySelector(".nowPlayingTitle");
     trackNameSpace.textContent = songObject.nameTrack;
 
-    let artistNameSpace =document.querySelector("#nowPlayingSong").querySelector(".nowPlayingArtist");
+    let artistNameSpace = document.querySelector("#nowPlayingSong").querySelector(".nowPlayingArtist");
     artistNameSpace.textContent = songObject.nameArtist;
+
+    let imgSrcSpace =DOM.audioPlayer.parentElement;
+    imgSrcSpace.style.backgroundImage = "url(" + songObject.imgSrc + ")";
 }

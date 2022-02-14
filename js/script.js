@@ -128,8 +128,6 @@ function changePlayer() {
 }
 
 function playAudio() {
-    // let nino = DOM.audioPlayer.querySelector("source").getAttribute("src")
-
     DOM.play.style.display = "none";
     DOM.stop.style.display = "flex";
     if (DOM.audioPlayer.dataset.songId === "") {
@@ -307,7 +305,7 @@ function cleanPreviousContent(section) {
 }
 
 
-function changeCurrentSong() {
+function changeCurrentSong(songObject) {
     let selectedSong = this.dataset.idSong;
     // console.log(selectedSong);
 

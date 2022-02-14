@@ -178,10 +178,19 @@ function changeVolume() {
 function playFirstSong()
 {
     let listMediaSongs = generarJSON();
-    
+    let firstSong = listMediaSongs[0];
+    console.log(firstSong)
+
+    let source = DOM.audioPlayer.querySelector("source");
+    source.setAttribute("src", firstSong.audioSrc);
+    DOM.audioPlayer.dataset.songId = firstSong.id;
+    audioLoad();
+    changeCurrentInfoSong(firstSong);
+    playAudio();
 }
 
-
+//hacer las funciones de playFirstSong...
+// hacer funciones adelante y atrás
 
 function loadTime() {
 
@@ -248,10 +257,6 @@ function generatePlaylist() {
     cleanPreviousContent(DOM.playlistPart);
     //creamos la lista
     let elementsList = document.createElement("ol");
-    // let listMedia = JSON.parse(playlistJSON);
-    // listMedia = Array.from(listMedia);
-    // console.log(listMedia);
-    // listMedia.songs
     listMediaSongs = generarJSON();
     listMediaSongs.forEach(song => {
         //creamos el elemento li para cada uno de la lista
@@ -304,7 +309,7 @@ function cleanPreviousContent(section) {
 
 function changeCurrentSong() {
     let selectedSong = this.dataset.idSong;
-    console.log(selectedSong);
+    // console.log(selectedSong);
 
     audioStop();
     listMediaSongs = generarJSON();

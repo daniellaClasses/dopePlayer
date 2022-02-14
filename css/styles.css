@@ -6,70 +6,71 @@
 }
 
 body {
-  background: -webkit-gradient(linear, left top, right top, from(#dcdc8b), color-stop(50%, #8ecad2), to(#c58ae5));
-  background: linear-gradient(90deg, #dcdc8b 0%, #8ecad2 50%, #c58ae5 100%);
-  /*background:linear-gradient(90deg, rgba(214, 123, 49, 1) 0%, rgba(113, 31, 88, 1) 50%, rgba(37, 33, 107, 1) 100%);*/
-}
-
-body header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 95%;
-  height: 80px;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  color: whitesmoke;
+  background: -webkit-gradient(linear, left top, right top, from(#d67b31), color-stop(50%, #711f58), to(#25216b));
+  background: linear-gradient(90deg, #d67b31 0%, #711f58 50%, #25216b 100%);
 }
 
-body header #btnMusic,
-body header #btnVideo,
-body header #applicationName {
+body aside {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 25%;
-  height: 99%;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(197, 138, 229, 0.512)), color-stop(50%, rgba(142, 202, 210, 0.396)), to(rgba(220, 220, 139, 0.573)));
-  background: linear-gradient(90deg, rgba(197, 138, 229, 0.512) 0%, rgba(142, 202, 210, 0.396) 50%, rgba(220, 220, 139, 0.573) 100%);
+  gap: 3%;
+  width: 10%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.637);
+}
+
+body aside #btnMusic,
+body aside #btnVideo,
+body aside #applicationName {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 128px;
+  height: 128px;
+  border-radius: 5px;
+  margin-top: 10%;
+  background-color: rgba(51, 58, 66, 0.144);
   border: solid rgba(255, 255, 255, 0.205) 2px;
   border-radius: 15px;
   -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
           box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
-  font-size: 2em;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.756);
+  text-align: center;
+}
+
+body aside #btnMusic:active,
+body aside #btnVideo:active,
+body aside #applicationName:active {
+  -webkit-box-shadow: 4px 4px 8px #747474, -4px -4px 8px #9c9c9c;
+          box-shadow: 4px 4px 8px #747474, -4px -4px 8px #9c9c9c;
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+body main {
+  width: 80%;
 }
 
 body main #audioSection {
-  margin: auto;
-  margin-top: 10px;
-  width: 91%;
-  height: 80vh;
-  border: solid darkblue 2px;
-  border-radius: 10px;
-  padding: 4px;
+  width: 100%;
+  height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  gap: 50px;
 }
 
 body main #audioSection #containerPlayer {
@@ -87,13 +88,14 @@ body main #audioSection #containerPlayer {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
-  width: 33%;
-  height: 90%;
+  width: 20%;
+  height: 100%;
   border: solid rgba(255, 255, 255, 0.205) 2px;
   border-radius: 15px;
   -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
           box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
-  background-color: rgba(245, 245, 245, 0.39);
+  border-radius: 0px 0px 10px 0px;
+  background-color: rgba(0, 0, 0, 0.637);
 }
 
 body main #audioSection #containerPlayer #playerAudio {
@@ -146,20 +148,21 @@ body main #audioSection #containerPlayer .controls {
 }
 
 body main #audioSection #containerPlayer .controls .play, body main #audioSection #containerPlayer .controls .stop, body main #audioSection #containerPlayer .controls .back, body main #audioSection #containerPlayer .controls .next {
-  border: solid rgba(255, 255, 255, 0.205) 2px;
-  border-radius: 15px;
-  -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
-          box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.158);
   cursor: pointer;
   width: 25%;
   height: 50px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  text-align: center;
-  font-size: 2em;
   color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 body main #audioSection #containerPlayer .controls .play:hover, body main #audioSection #containerPlayer .controls .stop:hover, body main #audioSection #containerPlayer .controls .back:hover, body main #audioSection #containerPlayer .controls .next:hover {
@@ -167,7 +170,10 @@ body main #audioSection #containerPlayer .controls .play:hover, body main #audio
           box-shadow: 2px 2px 4px black;
   -webkit-transform: scale(1.06);
           transform: scale(1.06);
-  background-color: rgba(221, 221, 221, 0.363);
+}
+
+body main #audioSection #containerPlayer .controls .stop {
+  display: none;
 }
 
 body main #audioSection #containerPlayer .volume {
@@ -196,10 +202,7 @@ body main #audioSection #containerPlayer .volume::-ms-fill-upper {
 }
 
 body main #audioSection #playerPlaylist {
-  width: 60%;
-  border: 2px solid purple;
-  border-radius: 10px;
-  padding: 5px;
+  width: 80%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -207,7 +210,6 @@ body main #audioSection #playerPlaylist {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  overflow: auto;
 }
 
 body main #audioSection #playerPlaylist #titlePlaylist {
@@ -216,41 +218,67 @@ body main #audioSection #playerPlaylist #titlePlaylist {
 }
 
 body main #audioSection #playerPlaylist #partPlaylist {
-  padding: 6px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  height: 100%;
 }
 
-body main #audioSection #playerPlaylist .displaySong {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  border: 2px solid #260080;
-  border-radius: 10px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 5px;
-  margin: 5px 0 5px 0;
+body main #audioSection #playerPlaylist ol {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: (1fr)[3];
+      grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  padding-top: 5%;
 }
 
-body main #audioSection #playerPlaylist .displaySong :nth-child(2) {
+body main #audioSection #playerPlaylist ol li {
+  margin-bottom: 20px;
+}
+
+body main #audioSection #playerPlaylist ol li .displaySong {
+  height: 100%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 50%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5%;
+  color: whitesmoke;
+  background-color: rgba(0, 0, 0, 0.705);
+  border: solid #6f00ff 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
+          box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
+  border-radius: 0% 0% 0% 15%;
+  overflow: hidden;
+}
+
+body main #audioSection #playerPlaylist ol li .displaySong:hover {
+  -webkit-box-shadow: 2px 2px 3px gray, -1px -1px 0.5px black;
+          box-shadow: 2px 2px 3px gray, -1px -1px 0.5px black;
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  overflow: hidden;
+}
+
+body main #audioSection #playerPlaylist ol li .displaySong .tamaniosImg {
+  width: 150px;
+  height: 100%;
+  border: solid #6f00ff 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(37, 37, 37, 0.274);
+          box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(37, 37, 37, 0.274);
+  border: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+  border-radius: 0%;
 }
 
 body main #audioSection #playerPlaylist .tamaniosImg {

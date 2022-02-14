@@ -12,6 +12,7 @@ const DOM = {
     videoSection: document.querySelector("#videoSection"),
     videoPlayer: document.querySelector("#playerVideo").querySelector("video"),
     play: document.querySelector(".play"),
+    timeBar: document.querySelector(".timeBar"),
     stop: document.querySelector(".stop"),
     volume: document.querySelector(".volume"),
     timeNow: document.querySelector(".timeNow"),
@@ -116,20 +117,20 @@ function changePlayer() {
 }
 
 function playAudio() {
-    // let nino = DOM.audioPlayer.querySelector("source").getAttribute("src");
+    // let nino = DOM.audioPlayer.querySelector("source").getAttribute("src")
 
-    // if () {
-    // } else {
-        // }
-            DOM.audioPlayer.play();
-
-    this.dataSet.idSong.classList.add("active");
+            DOM.audioPlayer.play()
+            DOM.play.style.display = "none";
+            DOM.stop.style.display = "flex";
+            this.dataSet.idSong.classList.add("active");
 
 }
 
 function audioStop() {
     DOM.audioPlayer.pause();
-    this.dataSet.idSong.classList.remove("active");
+    // this.dataSet.idSong.classList.remove("active");
+    DOM.stop.style.display = "none";
+    DOM.play.style.display = "flex";
 }
 
 function audioLoad() {
@@ -163,15 +164,19 @@ function loadTime() {
     let now = DOM.audioPlayer.currentTime;
     if (isNaN(now)) {
         DOM.timeNow.textContent = '00:00';
+        DOM.timeBar.value = 0;
     } else {
         DOM.timeNow.textContent = calculateTime(now);
+        DOM.timeBar.value = now;
     }
     let end = DOM.audioPlayer.duration;
-    // console.log(end);
+
     if (isNaN(end)) {
         DOM.timeEnd.textContent = '00:00';
+        DOM.timeBar.max = 0;
     } else {
         DOM.timeEnd.textContent = calculateTime(end);
+        DOM.timeBar.max = end;
     }
 
 }
@@ -226,8 +231,13 @@ function generatePlaylist() {
         //creamos el elemento li para cada uno de la lista
         let element = document.createElement("li");
         element.addEventListener("click", changeCurrentSong);
-        element.setAttribute("title", song.id);
+
+        // le asignamos a element el atributo dataset.idSong (html dataset-id-song)
+        // con valor song.id
+        element.dataset.idSong = song.id;
+        // element.setAttribute("title", song.id);
         // element.setAttribute("title", song.nameTrack);
+
 
         let containerInfo = document.createElement("div");
         containerInfo.classList.add("displaySong");
@@ -267,20 +277,15 @@ function cleanPreviousContent(section) {
 
 
 function changeCurrentSong() {
-    // console.log(this.title);
-    let selectedSong = this.title;//fue con el id
+    let selectedSong = this.dataset.idSong;
 
     audioStop();
     let listMedia = JSON.parse(playlistJSON);
-    // listMedia = Array.from(listMedia);
     listMediaSongs = listMedia.songs;
-    // listMediaSongs = Array.from(listMedia[0].songs);
 
     let newSong = listMediaSongs.find(search => {
         return search.id == selectedSong;
-        // return search.nameTrack == selectedSong;
     });
-    // console.log(newSong);
 
     let source = DOM.audioPlayer.querySelector("source");
     source.setAttribute("src", newSong.audioSrc);

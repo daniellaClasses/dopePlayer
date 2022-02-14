@@ -14,6 +14,8 @@ const DOM = {
     play: document.querySelector(".play"),
     timeBar: document.querySelector(".timeBar"),
     stop: document.querySelector(".stop"),
+    next: document.querySelector(".next"),
+    prev: document.querySelector(".back"),
     volume: document.querySelector(".volume"),
     timeNow: document.querySelector(".timeNow"),
     timeEnd: document.querySelector(".timeEnd")
@@ -85,15 +87,24 @@ let playlistJSON = `
     }
 `;
 
+function generarJSON(){
+    var listMedia = JSON.parse(playlistJSON);
+    var listMediaSongs = listMedia.songs;
+    return listMediaSongs;
+}
+
+
 //IIFE
 (function () {
     DOM.btnMusic.addEventListener("click", changePlayer);
     DOM.btnVideo.addEventListener("click", changePlayer);
     DOM.play.addEventListener("click", playAudio);
     DOM.stop.addEventListener("click", audioStop);
+    DOM.next.addEventListener("click", changeToNextSong);
     DOM.volume.addEventListener("change", changeVolume);
     DOM.audioPlayer.addEventListener("loadstart", loadTime);
     DOM.audioPlayer.addEventListener("timeupdate", loadTime);
+
 
     //generar playlist
     generatePlaylist();
@@ -119,11 +130,14 @@ function changePlayer() {
 function playAudio() {
     // let nino = DOM.audioPlayer.querySelector("source").getAttribute("src")
 
-            DOM.audioPlayer.play()
-            DOM.play.style.display = "none";
-            DOM.stop.style.display = "flex";
-            this.dataSet.idSong.classList.add("active");
-
+    DOM.play.style.display = "none";
+    DOM.stop.style.display = "flex";
+    if (DOM.audioPlayer.dataset.songId === "") {
+        playFirstSong();
+    }
+    else {
+        DOM.audioPlayer.play()
+    }
 }
 
 function audioStop() {
@@ -158,6 +172,16 @@ function changeVolume() {
     DOM.audioPlayer.volume = level;
 
 }
+
+//función especialita para reproducir la primera canción
+
+function playFirstSong()
+{
+    let listMediaSongs = generarJSON();
+    
+}
+
+
 
 function loadTime() {
 
@@ -224,10 +248,12 @@ function generatePlaylist() {
     cleanPreviousContent(DOM.playlistPart);
     //creamos la lista
     let elementsList = document.createElement("ol");
-    let listMedia = JSON.parse(playlistJSON);
+    // let listMedia = JSON.parse(playlistJSON);
     // listMedia = Array.from(listMedia);
     // console.log(listMedia);
-    listMedia.songs.forEach(song => {
+    // listMedia.songs
+    listMediaSongs = generarJSON();
+    listMediaSongs.forEach(song => {
         //creamos el elemento li para cada uno de la lista
         let element = document.createElement("li");
         element.addEventListener("click", changeCurrentSong);
@@ -278,10 +304,10 @@ function cleanPreviousContent(section) {
 
 function changeCurrentSong() {
     let selectedSong = this.dataset.idSong;
+    console.log(selectedSong);
 
     audioStop();
-    let listMedia = JSON.parse(playlistJSON);
-    listMediaSongs = listMedia.songs;
+    listMediaSongs = generarJSON();
 
     let newSong = listMediaSongs.find(search => {
         return search.id == selectedSong;
@@ -289,19 +315,63 @@ function changeCurrentSong() {
 
     let source = DOM.audioPlayer.querySelector("source");
     source.setAttribute("src", newSong.audioSrc);
+    DOM.audioPlayer.dataset.songId = selectedSong;
     audioLoad();
     changeCurrentInfoSong(newSong);
     playAudio();
 }
 
 
-function changeCurrentInfoSong(songObject){
+function changeCurrentInfoSong(songObject) {
     let trackNameSpace = document.querySelector("#nowPlayingSong").querySelector(".nowPlayingTitle");
     trackNameSpace.textContent = songObject.nameTrack;
 
     let artistNameSpace = document.querySelector("#nowPlayingSong").querySelector(".nowPlayingArtist");
     artistNameSpace.textContent = songObject.nameArtist;
 
-    let imgSrcSpace =DOM.audioPlayer.parentElement;
+    let imgSrcSpace = DOM.audioPlayer.parentElement;
     imgSrcSpace.style.backgroundImage = "url(" + songObject.imgSrc + ")";
 }
+
+
+function changeToNextSong() {
+    let currentIdSong = this.dataset.idSong;
+    let nextSongId = currentIdSong + 1;
+    listMediaSongs = generarJSON();
+    if (nextSongId > listMediaSongs.length) {
+        nextSongId = 1;
+        changeCurrentSong();
+    }
+    else {
+        changeCurrentSong();
+    }
+}
+
+
+// //Next song
+// next.addEventListener("click",function(){
+//     let idOriginal = document.querySelector(".cancion").id;
+//     let idNuevo = parseInt(idOriginal) + 1;
+//     if(idNuevo > songs.length){
+//         idNuevo = 1;
+//         reproducir(idNuevo);
+
+//     }
+//     else{
+//         reproducir(idNuevo);
+
+//     }
+// });
+
+// back.addEventListener("click",function(){
+//     let idOriginal = document.querySelector(".cancion").id;
+//     let idNuevo = idOriginal - 1;
+//     if(idNuevo <= 0){
+//         idNuevo = songs.length;
+//         reproducir(idNuevo);
+//     }
+//     else{
+//         reproducir(idNuevo);
+
+//     }
+// });

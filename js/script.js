@@ -18,7 +18,7 @@ const DOM = {
     timeEnd: document.querySelector(".timeEnd")
 };
 
-let playlistJSON = `[
+let playlistJSON = `
     {
         "songs":
             [
@@ -82,7 +82,7 @@ let playlistJSON = `[
                 }
             ]
     }
-]`;
+`;
 
 //IIFE
 (function () {
@@ -122,10 +122,14 @@ function playAudio() {
     // } else {
         // }
             DOM.audioPlayer.play();
+
+    this.dataSet.idSong.classList.add("active");
+
 }
 
 function audioStop() {
     DOM.audioPlayer.pause();
+    this.dataSet.idSong.classList.remove("active");
 }
 
 function audioLoad() {
@@ -216,9 +220,9 @@ function generatePlaylist() {
     //creamos la lista
     let elementsList = document.createElement("ol");
     let listMedia = JSON.parse(playlistJSON);
-    listMedia = Array.from(listMedia);
+    // listMedia = Array.from(listMedia);
     // console.log(listMedia);
-    listMedia[0].songs.forEach(song => {
+    listMedia.songs.forEach(song => {
         //creamos el elemento li para cada uno de la lista
         let element = document.createElement("li");
         element.addEventListener("click", changeCurrentSong);
@@ -264,12 +268,13 @@ function cleanPreviousContent(section) {
 
 function changeCurrentSong() {
     // console.log(this.title);
-    let selectedSong = this.title;
+    let selectedSong = this.title;//fue con el id
 
     audioStop();
     let listMedia = JSON.parse(playlistJSON);
-    listMedia = Array.from(listMedia);
-    listMediaSongs = Array.from(listMedia[0].songs);
+    // listMedia = Array.from(listMedia);
+    listMediaSongs = listMedia.songs;
+    // listMediaSongs = Array.from(listMedia[0].songs);
 
     let newSong = listMediaSongs.find(search => {
         return search.id == selectedSong;

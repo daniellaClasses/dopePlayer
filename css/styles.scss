@@ -52,6 +52,10 @@ body {
     justify-content: space-around;
     align-items: center;
 
+    // #applicationName{
+    //   font-family: 'Marck Script', cursive;
+    // }
+
     #btnMusic,
     #btnVideo,
     #applicationName {
@@ -128,7 +132,8 @@ body {
           width: 300px;
           height: 300px;
           // border: 2px solid blueviolet;
-          background-image: url("../img/01song.jpg");
+          // background-image: url("../img/01song.jpg");
+          background-image: url("../img/no-sound-md.png");
           @include propComunes();
         }
 

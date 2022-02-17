@@ -21,13 +21,11 @@
   border-radius: 15px;
 }
 
-@mixin defaultBorder($color1,$color2,$color3) {
-
+@mixin defaultBorder($color1, $color2, $color3) {
   border: solid $color1 2px;
   border-radius: 15px;
 
   box-shadow: 2px 2px 4px $color2, -2px -2px 4px $color3;
-
 }
 
 @mixin bgGradient($color1, $color2, $color3) {
@@ -50,7 +48,13 @@ body {
   // );
 
   //Modo noche
-  background:linear-gradient(90deg, rgba(214, 123, 49, 1) 0%, rgba(113, 31, 88, 1) 50%, rgba(37, 33, 107, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(214, 123, 49, 1) 0%,
+    rgba(113, 31, 88, 1) 50%,
+    rgba(37, 33, 107, 1) 100%
+  );
+
   aside {
     display: flex;
     flex-direction: column;
@@ -64,7 +68,6 @@ body {
     #btnMusic,
     #btnVideo,
     #applicationName {
-
       display: flex;
       width: 128px;
       height: 128px;
@@ -72,21 +75,24 @@ body {
       margin-top: 10%;
       // @include bgGradient(rgba(197, 138, 229, 0.512),rgba(142, 202, 210, 0.396),rgba(220, 220, 139, 0.573));
       background-color: rgba(51, 58, 66, 0.144);
-      @include defaultBorder(rgba(255, 255, 255, 0.205),rgb(0, 0, 0),rgba(245, 245, 245, 0.274));
+      @include defaultBorder(
+        rgba(255, 255, 255, 0.205),
+        rgb(0, 0, 0),
+        rgba(245, 245, 245, 0.274)
+      );
       text-align: center;
 
       &:active {
-
-        box-shadow: 4px 4px 8px rgb(116, 116, 116), -4px -4px 8px rgb(156, 156, 156);
+        box-shadow: 4px 4px 8px rgb(116, 116, 116),
+          -4px -4px 8px rgb(156, 156, 156);
         transform: scale(1.01);
       }
 
       // &:hover{
       //   transform: scale(1.02) translatex(2%);
       // }
+    }
   }
-}
-
 
   main {
     width: 80%;
@@ -99,27 +105,33 @@ body {
       // padding: px;
       display: flex;
       justify-content: space-around;
-      gap: 50px;
+      // gap: 50px;
+
       // align-items: center;
 
-      #containerPlayer{
+      #containerPlayer {
         display: flex;
         flex-direction: column;
+        flex-shrink: 1;
         align-items: center;
         gap: 10px;
         box-sizing: border-box;
         padding: 10px;
-        width: 20%;
+        width: 25%;
         height: 100%;
 
-        @include defaultBorder(rgba(255, 255, 255, 0.205),rgb(0, 0, 0),rgba(245, 245, 245, 0.274));
+        @include defaultBorder(
+          rgba(255, 255, 255, 0.205),
+          rgb(0, 0, 0),
+          rgba(245, 245, 245, 0.274)
+        );
         border-radius: 0px 0px 10px 0px;
         background-color: rgba(0, 0, 0, 0.637);
 
         // background-color: rgba(245, 245, 245, 0.39);
 
         #playerAudio {
-          width: 300px;
+          width: 100%;
           height: 300px;
           // border: 2px solid blueviolet;
           // background-image: url("../img/01song.jpg");
@@ -127,93 +139,82 @@ body {
           @include propComunes();
         }
 
-        #nowPlayingSong{
+        #nowPlayingSong {
           text-align: center;
         }
 
-        .timeCounter{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .timeCounter {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-            width: 300px;
-            height: 40px;
+          width: 300px;
+          height: 40px;
 
-            padding-left: 5px;
-            padding-right: 5px;
+          padding-left: 5px;
+          padding-right: 5px;
 
-            .timeNow, .timeEnd{
-              font-weight: bold;
-            }
+          .timeNow,
+          .timeEnd {
+            font-weight: bold;
+          }
 
-            input{
-              width: 80%;
-            }
-            // .timeEnd{
-            // }
+          input {
+            width: 80%;
+          }
+          // .timeEnd{
+          // }
         }
         //
-        .controls{
+        .controls {
           display: flex;
           gap: 10px;
           justify-content: center;
           width: 300px;
-          .play, .stop, .back, .next{
-            // @include defaultBorder(rgba(255, 255, 255, 0.205),rgb(0, 0, 0),rgba(245, 245, 245, 0.274));
-            // border-radius: 15px;
-            // @include defaultBorder(rgba(255, 255, 255, 0.205),rgb(0, 0, 0),rgba(245, 245, 245, 0.274));
-            // border-radius: 5px;
-            // background-color: rgba(0, 0, 0, 0.158);
+          .play,
+          .stop,
+          .back,
+          .next {
             cursor: pointer;
             width: 25%;
             height: 50px;
             transition: all 0.2s;
 
-            // text-align: center;
-            // font-size: 2em;
             color: whitesmoke;
             display: flex;
             align-items: center;
             justify-content: center;
 
-            &:hover{
-              box-shadow: 2px 2px 4px black;
+            &:hover {
               transform: scale(1.06);
-              // background-color: rgba(221, 221, 221, 0.363);
             }
           }
 
-           .stop{
+          .stop {
             display: none;
           }
-
         }
 
-        .volume{
+        .volume {
           width: 50%;
-          // box-shadow: 10px 10px 12px black;
-          // &:in-range {
-          // }
           appearance: none;
           padding: 0;
           border: solid black 0.1em;
           border-radius: 15px;
           cursor: pointer;
 
-          &::-webkit-slider-thumb{
+          &::-webkit-slider-thumb {
             appearance: none;
             border: solid rgb(112, 30, 145) 4px;
             width: 15%;
 
             border-radius: 15px;
-
           }
-          &::-ms-fill-upper{
+          &::-ms-fill-upper {
             appearance: none;
             background-color: rgb(112, 30, 145);
             border: solid red 1em;
           }
-
         }
       }
       //----------------------------------------------------  PARTE LATERAL DERECHA: PLAYLIST ------------------------------------------------------------------
@@ -227,23 +228,10 @@ body {
           font-size: 2em;
         }
 
-
         #partPlaylist {
-          // border: 2px solid blueviolet;
-          // padding: 6px;
-          // display: flex;
-          // flex-direction: column;
           height: 100%;
-
         }
-
-        // #partPlaylist :first-child{
-        //   padding: 15px;
-        //   display: flex;
-        //   flex-direction: column;
-        // }
-        ol{
-
+        ol {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           grid-template-rows: repeat(3, 1fr);
@@ -252,64 +240,99 @@ body {
           height: 100%;
           width: 100%;
           padding-top: 5%;
-          li{
+
+          li.displaySong {
             margin-bottom: 20px;
-            .displaySong{
-              height: 100%;
-              width: 100%;
-              display: flex;
-              align-items: center;
-              // justify-content: center;
-              gap: 5%;
-              color: whitesmoke;
-              // border: solid rgba(0, 0, 0, 0.37);
-              background-color: rgba(0, 0, 0, 0.705);
-              @include defaultBorder(rgb(111, 0, 255),rgb(0, 0, 0),rgba(245, 245, 245, 0.274));
-              border-radius: 0% 0% 0% 15%;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 5%;
+            color: whitesmoke;
+            // border: solid rgba(0, 0, 0, 0.37);
+            background-color: rgba(0, 0, 0, 0.705);
+            @include defaultBorder(
+              rgb(111, 0, 255),
+              rgb(0, 0, 0),
+              rgba(245, 245, 245, 0.274)
+            );
+            border-radius: 0% 0% 0% 15%;
+            overflow: hidden;
+
+            &:hover {
+              box-shadow: 2px 2px 3px gray, -1px -1px 0.5px black;
+              transform: scale(1.02);
               overflow: hidden;
+            }
 
-              &:hover{
-                box-shadow: 2px 2px 3px gray, -1px -1px 0.5px black;
-                transform: scale(1.02);
-                overflow: hidden;
+            .tamaniosImg {
+              width: 150px;
+              height: 100%;
+              @include defaultBorder(
+                rgb(111, 0, 255),
+                rgb(0, 0, 0),
+                rgba(37, 37, 37, 0.274)
+              );
+              border: 0;
+              @include propComunes();
+              border-radius: 0%;
+            }
+          }
+          .nowPlayingMedia div:nth-child(2) {
+            @include defaultBorder(
+              rgb(192, 190, 76),
+              rgb(123, 232, 240),
+              rgb(233, 86, 189)
+            );
+            padding: 7px;
+
+            background: -webkit-linear-gradient(#eee, #333);
+            background-clip: border-box;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: rgba(137, 43, 226, 0.746);
+
+            animation-name: estoyActivado;
+            animation-duration: infinite;
+
+            @keyframes estoyActivado {
+              0% {
+                @include defaultBorder(
+                  rgb(192, 190, 76),
+                  rgb(123, 232, 240),
+                  rgb(233, 86, 189)
+                );
               }
-
-              .tamaniosImg {
-                width: 150px;
-                height: 100%;
-                @include defaultBorder(rgb(111, 0, 255),rgb(0, 0, 0),rgba(37, 37, 37, 0.274));
-                border: 0;
-                @include propComunes();
-                // border-radius: 50%;
-                border-radius: 0%;
+              25% {
+                @include defaultBorder(
+                  rgb(233, 86, 189),
+                  rgb(192, 190, 76),
+                  rgb(123, 232, 240)
+                );
+              }
+              50% {
+                @include defaultBorder(
+                  rgb(123, 232, 240),
+                  rgb(233, 86, 189),
+                  rgb(192, 190, 76)
+                );
+              }
+              75% {
+                @include defaultBorder(
+                  rgb(233, 86, 189),
+                  rgb(192, 190, 76),
+                  rgb(123, 232, 240)
+                );
+              }
+              100% {
+                @include defaultBorder(
+                  rgb(192, 190, 76),
+                  rgb(123, 232, 240),
+                  rgb(233, 86, 189)
+                );
               }
             }
           }
         }
-
-
-        // .displaySong {
-        //   display: flex;
-        //   border: 2px solid rgb(38, 0, 128);
-        //   border-radius: 10px;
-        //   justify-content: space-between;
-        //   padding: 5px;
-        //   margin: 5px 0 5px 0;
-        //   // background-color: antiquewhite;
-
-        //   // *{
-        //   //   text-align: center;
-        //   // }
-
-        //   :nth-child(2) {
-        //     display: flex;
-        //     flex-direction: column;
-
-        //     // text-align: center;
-        //     justify-content: center;
-        //     width: 50%;
-        //   }
-        // }
 
         .tamaniosImg {
           width: 70px;
@@ -322,7 +345,6 @@ body {
 
     //---------------------------------------------------------  EMPIEZA LA PARTE DE VÍDEO -------------------------------------------------------------------------
     #videoSection {
-      // display: none;
       margin: auto;
       margin-top: 10px;
       width: 91%;
@@ -333,9 +355,18 @@ body {
     }
     //---------------------------------------------------------  TERMINA LA PARTE DE VÍDEO -------------------------------------------------------------------------
 
-    #audioSection.hidePlayer,
-    #videoSection.hidePlayer {
-      display: none;
+      #audioSection.hidePlayer,
+        #videoSection.hidePlayer {
+         display: none;
     }
   }
+
+  // #maravitupendo{
+  //   background:#ecf0f1;
+  //   canvas {
+  //     display:block;
+  //     margin:auto;
+  //     background:#ecf0f1;
+  //   }
+  // }
 }

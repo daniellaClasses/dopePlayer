@@ -70,7 +70,6 @@ body main #audioSection {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  gap: 50px;
 }
 
 body main #audioSection #containerPlayer {
@@ -81,6 +80,8 @@ body main #audioSection #containerPlayer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -88,7 +89,7 @@ body main #audioSection #containerPlayer {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
-  width: 20%;
+  width: 25%;
   height: 100%;
   border: solid rgba(255, 255, 255, 0.205) 2px;
   border-radius: 15px;
@@ -99,7 +100,7 @@ body main #audioSection #containerPlayer {
 }
 
 body main #audioSection #containerPlayer #playerAudio {
-  width: 300px;
+  width: 100%;
   height: 300px;
   background-image: url("../img/no-sound-md.png");
   background-size: cover;
@@ -128,7 +129,8 @@ body main #audioSection #containerPlayer .timeCounter {
   padding-right: 5px;
 }
 
-body main #audioSection #containerPlayer .timeCounter .timeNow, body main #audioSection #containerPlayer .timeCounter .timeEnd {
+body main #audioSection #containerPlayer .timeCounter .timeNow,
+body main #audioSection #containerPlayer .timeCounter .timeEnd {
   font-weight: bold;
 }
 
@@ -147,7 +149,10 @@ body main #audioSection #containerPlayer .controls {
   width: 300px;
 }
 
-body main #audioSection #containerPlayer .controls .play, body main #audioSection #containerPlayer .controls .stop, body main #audioSection #containerPlayer .controls .back, body main #audioSection #containerPlayer .controls .next {
+body main #audioSection #containerPlayer .controls .play,
+body main #audioSection #containerPlayer .controls .stop,
+body main #audioSection #containerPlayer .controls .back,
+body main #audioSection #containerPlayer .controls .next {
   cursor: pointer;
   width: 25%;
   height: 50px;
@@ -165,9 +170,10 @@ body main #audioSection #containerPlayer .controls .play, body main #audioSectio
           justify-content: center;
 }
 
-body main #audioSection #containerPlayer .controls .play:hover, body main #audioSection #containerPlayer .controls .stop:hover, body main #audioSection #containerPlayer .controls .back:hover, body main #audioSection #containerPlayer .controls .next:hover {
-  -webkit-box-shadow: 2px 2px 4px black;
-          box-shadow: 2px 2px 4px black;
+body main #audioSection #containerPlayer .controls .play:hover,
+body main #audioSection #containerPlayer .controls .stop:hover,
+body main #audioSection #containerPlayer .controls .back:hover,
+body main #audioSection #containerPlayer .controls .next:hover {
   -webkit-transform: scale(1.06);
           transform: scale(1.06);
 }
@@ -234,11 +240,8 @@ body main #audioSection #playerPlaylist ol {
   padding-top: 5%;
 }
 
-body main #audioSection #playerPlaylist ol li {
+body main #audioSection #playerPlaylist ol li.displaySong {
   margin-bottom: 20px;
-}
-
-body main #audioSection #playerPlaylist ol li .displaySong {
   height: 100%;
   width: 100%;
   display: -webkit-box;
@@ -258,7 +261,7 @@ body main #audioSection #playerPlaylist ol li .displaySong {
   overflow: hidden;
 }
 
-body main #audioSection #playerPlaylist ol li .displaySong:hover {
+body main #audioSection #playerPlaylist ol li.displaySong:hover {
   -webkit-box-shadow: 2px 2px 3px gray, -1px -1px 0.5px black;
           box-shadow: 2px 2px 3px gray, -1px -1px 0.5px black;
   -webkit-transform: scale(1.02);
@@ -266,7 +269,7 @@ body main #audioSection #playerPlaylist ol li .displaySong:hover {
   overflow: hidden;
 }
 
-body main #audioSection #playerPlaylist ol li .displaySong .tamaniosImg {
+body main #audioSection #playerPlaylist ol li.displaySong .tamaniosImg {
   width: 150px;
   height: 100%;
   border: solid #6f00ff 2px;
@@ -279,6 +282,88 @@ body main #audioSection #playerPlaylist ol li .displaySong .tamaniosImg {
   background-position: center;
   border-radius: 15px;
   border-radius: 0%;
+}
+
+body main #audioSection #playerPlaylist ol .nowPlayingMedia div:nth-child(2) {
+  border: solid #c0be4c 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+          box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+  padding: 7px;
+  background: -webkit-linear-gradient(#eee, #333);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: rgba(137, 43, 226, 0.746);
+  -webkit-animation-name: estoyActivado;
+          animation-name: estoyActivado;
+  -webkit-animation-duration: infinite;
+          animation-duration: infinite;
+}
+
+@-webkit-keyframes estoyActivado {
+  0% {
+    border: solid #c0be4c 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+            box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+  }
+  25% {
+    border: solid #e956bd 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+            box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+  }
+  50% {
+    border: solid #7be8f0 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #e956bd, -2px -2px 4px #c0be4c;
+            box-shadow: 2px 2px 4px #e956bd, -2px -2px 4px #c0be4c;
+  }
+  75% {
+    border: solid #e956bd 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+            box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+  }
+  100% {
+    border: solid #c0be4c 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+            box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+  }
+}
+
+@keyframes estoyActivado {
+  0% {
+    border: solid #c0be4c 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+            box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+  }
+  25% {
+    border: solid #e956bd 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+            box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+  }
+  50% {
+    border: solid #7be8f0 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #e956bd, -2px -2px 4px #c0be4c;
+            box-shadow: 2px 2px 4px #e956bd, -2px -2px 4px #c0be4c;
+  }
+  75% {
+    border: solid #e956bd 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+            box-shadow: 2px 2px 4px #c0be4c, -2px -2px 4px #7be8f0;
+  }
+  100% {
+    border: solid #c0be4c 2px;
+    border-radius: 15px;
+    -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+            box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+  }
 }
 
 body main #audioSection #playerPlaylist .tamaniosImg {

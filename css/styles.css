@@ -342,7 +342,7 @@ body main #audioSection #playerPlaylist ol .nowPlayingMedia div:nth-child(2) {
   -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
           box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
   padding: 7px;
-  margin-right: 2px;
+  margin-right: 3%;
   background: -webkit-linear-gradient(#eee, #333);
   background-clip: border-box;
   -webkit-background-clip: text;

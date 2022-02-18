@@ -9,9 +9,9 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  color: whitesmoke;
-  background: -webkit-gradient(linear, left top, right top, from(#d67b31), color-stop(50%, #711f58), to(#25216b));
-  background: linear-gradient(90deg, #d67b31 0%, #711f58 50%, #25216b 100%);
+  color: rgba(245, 245, 245, 0.87);
+  background: -webkit-gradient(linear, left top, right top, from(#b15408), color-stop(50%, #711f58), to(#25216b));
+  background: linear-gradient(90deg, #b15408 0%, #711f58 50%, #25216b 100%);
 }
 
 body aside {
@@ -28,7 +28,7 @@ body aside {
   gap: 3%;
   width: 10%;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.637);
+  background-color: rgba(25, 59, 212, 0.39);
 }
 
 body aside #btnMusic,
@@ -41,7 +41,7 @@ body aside #applicationName {
   height: 128px;
   border-radius: 5px;
   margin-top: 10%;
-  background-color: rgba(51, 58, 66, 0.144);
+  background-color: rgba(92, 102, 114, 0.144);
   border: solid rgba(255, 255, 255, 0.205) 2px;
   border-radius: 15px;
   -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
@@ -96,7 +96,7 @@ body main #audioSection #containerPlayer {
   -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
           box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
   border-radius: 0px 0px 10px 0px;
-  background-color: rgba(0, 0, 0, 0.637);
+  background-color: rgba(25, 59, 212, 0.39);
 }
 
 body main #audioSection #containerPlayer #playerAudio {
@@ -204,7 +204,7 @@ body main #audioSection #containerPlayer .volume::-webkit-slider-thumb {
 body main #audioSection #containerPlayer .volume::-ms-fill-upper {
   appearance: none;
   background-color: #701e91;
-  border: solid red 1em;
+  border: solid #5a22b4 1em;
 }
 
 body main #audioSection #playerPlaylist {

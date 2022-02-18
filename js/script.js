@@ -70,29 +70,34 @@ let playlistJSON = `
             [
                 {
                     "id": 1,
-                    "nameVideo": "Cómo dirías que es España sin decirlo",
-                    "videoSrc": ""
+                    "nameVideo": "No se habla de Bruno",
+                    "videoSrc": "../src/media/video/1 No se habla de Bruno (De Encanto).mp4"
                 },
                 {
                     "id": 2,
                     "nameVideo": "Haikyuu!! Season 2 Opening 4 - Fly High",
-                    "videoSrc": ""
+                    "videoSrc": "../src/media/video/2 Haikyuu!! Season 2 Opening 4 - Fly High.mp4"
                 },
                 {
                     "id": 3,
                     "nameVideo": "Arcane Opening -  League of Legends",
-                    "videoSrc": ""
+                    "videoSrc": "../src/media/video/3 Arcane Opening -  League of Legends.mp4"
                 }
             ]
     }
 `;
 
-function generarJSON() {
+function playlistSongs() {
     var listMedia = JSON.parse(playlistJSON);
     var listMediaSongs = listMedia.songs;
     return listMediaSongs;
 }
 
+function playlistVideos(){
+    var listMedia = JSON.parse(playlistJSON);
+    var listMediaVideos = listMedia.videos;
+    return listMediaVideos;
+}
 
 //IIFE
 (function () {
@@ -108,11 +113,11 @@ function generarJSON() {
 
     //generar playlist
     generatePlaylist();
+
+    //generar lista vídeos
+    generateVideos();
 }
 )();
-
-
-
 
 function changePlayer() {
     if (this.id == "btnMusic") {
@@ -164,16 +169,13 @@ function videoLoad() {
 }
 
 function changeVolume() {
-
     let level = DOM.volume.value;
     DOM.audioPlayer.volume = level;
-
 }
 
 //función especialita para reproducir la primera canción
-
 function playFirstSong() {
-    let listMediaSongs = generarJSON();
+    let listMediaSongs = playlistSongs();
     let firstSong = listMediaSongs[0];
     let firstSongOfTheList = document.querySelector("li");
     firstSongOfTheList.classList.add("nowPlayingMedia");
@@ -185,9 +187,6 @@ function playFirstSong() {
     changeCurrentInfoSong(firstSong);
     playAudio();
 }
-
-//hacer las funciones de playFirstSong...
-// hacer funciones adelante y atrás
 
 function loadTime() {
 
@@ -251,7 +250,7 @@ function generatePlaylist() {
     cleanPreviousContent(DOM.playlistPart);
     //creamos la lista
     let elementsList = document.createElement("ol");
-    listMediaSongs = generarJSON();
+    listMediaSongs = playlistSongs();
     listMediaSongs.forEach(song => {
         //creamos el elemento li para cada uno de la lista
         let element = document.createElement("li");
@@ -286,6 +285,10 @@ function generatePlaylist() {
     DOM.playlistPart.appendChild(elementsList);
 }
 
+function generateVideos(){
+    cleanPreviousContent(section);
+}
+
 function cleanPreviousContent(section) {
     if (section.hasChildNodes) {
         section.childNodes.forEach(element => {
@@ -294,7 +297,6 @@ function cleanPreviousContent(section) {
         );
     }
 }
-
 
 function changeCurrentSong(event) {
     let selectedSong = this.dataset.idSong;
@@ -310,7 +312,7 @@ function changeCurrentSong(event) {
 
     // || activeSong.classList.contains("nowPlayingMedia")
     audioStop();
-    listMediaSongs = generarJSON();
+    listMediaSongs = playlistSongs();
 
     let newSong = listMediaSongs.find(search => {
         return search.id == selectedSong;
@@ -347,7 +349,7 @@ function changeToNextSong() {
         let currentIdSong = activeSong.dataset.idSong;
         let nextSongId = parseInt(currentIdSong) + 1;
 
-        listMediaSongs = generarJSON();
+        listMediaSongs = playlistSongs();
         if (parseInt(nextSongId) > parseInt(listMediaSongs.length)) {
             nextSongId = 1;
             let newSong = listMediaSongs.find(search => {
@@ -377,7 +379,7 @@ function changeToPreviousSong() {
         let currentIdSong = activeSong.dataset.idSong;
         let nextSongId = parseInt(currentIdSong) - 1;
 
-        listMediaSongs = generarJSON();
+        listMediaSongs = playlistSongs();
         if (parseInt(nextSongId) <= 0) {
             nextSongId = listMediaSongs.length;
             let newSong = listMediaSongs.find(search => {
@@ -406,7 +408,7 @@ function changeToAnotherSongButtons(songObject) {
     seleccion.classList.add("nowPlayingMedia");
 
     audioStop();
-    listMediaSongs = generarJSON();
+    listMediaSongs = playlistSongs();
 
     let newSong = listMediaSongs.find(search => {
         return search.id == idNew;
@@ -419,23 +421,6 @@ function changeToAnotherSongButtons(songObject) {
     changeCurrentInfoSong(newSong);
     playAudio();
 }
-
-// back.addEventListener("click",function(){
-//     let idOriginal = document.querySelector(".cancion").id;
-//     let idNuevo = idOriginal - 1;
-//     if(idNuevo <= 0){
-//         idNuevo = songs.length;
-//         reproducir(idNuevo);
-//     }
-//     else{
-//         reproducir(idNuevo);
-
-//     }
-// });
-
-
-
-
 
 //MARAVITUPENDO
 // var c = document.getElementById("myCanvas");

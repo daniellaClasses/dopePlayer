@@ -20,7 +20,7 @@
         <div id="applicationName"> Muse
             <span>player</span>
         </div>
-        <div id="btnMusic">
+        <div id="btnMusic" class="active">
             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                 x="0px" y="0px" width="150px" height="130px" viewBox="0 0 32.247 32.247"
                 style="enable-background:new 0 0 32.247 32.247;" xml:space="preserve">
@@ -89,7 +89,7 @@
 
     </aside>
     <main>
-        <section id="audioSection" class="hidePlayer">
+        <section id="audioSection">
             <div id="containerPlayer">
                 <div id="playerAudio">
                     <audio data-song-id="">
@@ -102,7 +102,7 @@
                 </div>
                 <div class="timeCounter">
                     <span class="timeNow">00:00</span>
-                    <input type="range" name="" id="" class="timeBar">
+                    <input type="range" name="" id="" class="timeBar" disabled>
                     <span class="timeEnd">00:00</span>
                 </div>
                 <div class="controls">
@@ -210,7 +210,7 @@
 
                     </div>
                 </div>
-                <input type="range" name="" id="" class="volume" min="0" max="1" step="0.01" value="0.2">
+                <input type="range" name="" id="" class="volume" min="0" max="1" step="0.01" value="0.9">
             </div>
 
             <div id="playerPlaylist">
@@ -225,7 +225,7 @@
 
 
 
-        <section id="videoSection">
+        <section id="videoSection" class="hidePlayer">
             <div id="containerVideo">
                 <div id="playerVideo">
                     <div id="container">

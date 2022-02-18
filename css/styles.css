@@ -259,6 +259,7 @@ body main #audioSection #playerPlaylist {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  overflow-y: auto;
 }
 
 body main #audioSection #playerPlaylist #titlePlaylist {
@@ -273,13 +274,13 @@ body main #audioSection #playerPlaylist #partPlaylist {
 body main #audioSection #playerPlaylist ol {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  -ms-grid-rows: (1fr)[3];
-      grid-template-rows: repeat(3, 1fr);
-  gap: 20px;
-  height: 100%;
-  width: 100%;
+  -ms-grid-columns: (1fr)[4];
+      grid-template-columns: repeat(4, 1fr);
+  -ms-grid-rows: (1fr)[4];
+      grid-template-rows: repeat(4, 1fr);
+  gap: 15px;
+  height: 80%;
+  width: 90%;
   padding-top: 2%;
 }
 
@@ -327,12 +328,17 @@ body main #audioSection #playerPlaylist ol li.displaySong .tamaniosImg {
   border-radius: 0%;
 }
 
+body main #audioSection #playerPlaylist ol li.displaySong .infoSong {
+  padding-right: 2%;
+}
+
 body main #audioSection #playerPlaylist ol .nowPlayingMedia div:nth-child(2) {
   border: solid #c0be4c 2px;
   border-radius: 15px;
   -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
           box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
   padding: 7px;
+  margin-right: 2px;
   background: -webkit-linear-gradient(#eee, #333);
   background-clip: border-box;
   -webkit-background-clip: text;
@@ -445,13 +451,15 @@ body main #videoSection #containerVideo {
 body main #videoSection #containerVideo #playerVideo {
   width: 80%;
   height: 80%;
+  border-radius: 10px;
 }
 
 body main #videoSection #containerVideo #playerVideo #container {
   width: 100%;
   height: 80%;
   background-image: url("../img/carrete_line.png");
-  background-size: auto;
+  background-repeat: repeat;
+  background-size: 20%;
   -webkit-box-shadow: 4px 4px 6px black, -4px -4px 6px black;
           box-shadow: 4px 4px 6px black, -4px -4px 6px black;
 }
@@ -460,10 +468,6 @@ body main #videoSection #containerVideo #playerVideo #container video {
   width: 80%;
   height: 100%;
   background-color: black;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 15px;
   margin-left: 10%;
 }
 

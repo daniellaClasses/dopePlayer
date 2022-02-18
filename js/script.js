@@ -74,6 +74,40 @@ let playlistJSON = `
                     "nameArtist": "Yuuri",
                     "audioSrc": "../src/media/audio/6 BETELGEUSE.mp3",
                     "imgSrc": "../img/06song.jpg"
+                },
+                {
+                    "id": 7,
+                    "nameTrack": "Al Santo Equivocado",
+                    "nameArtist": "Ariadna",
+                    "audioSrc": "../src/media/audio/7 Al Santo Equivocado.mp3",
+                    "imgSrc": "../img/07song.jpg"
+                },
+                {
+                    "id": 8,
+                    "nameTrack": "La Di Die ft Jxdn",
+                    "nameArtist": "Nessa Barrett",
+                    "audioSrc": "../src/media/audio/8 Nessa Barrett - la di die feat. jxdn.mp3",
+                    "imgSrc": "../img/08song.jpg"
+                },
+                {
+                    "id": 9,
+                    "nameTrack": "Christmas EveL",
+                    "nameArtist": "Stray Kids",
+                    "audioSrc": "../src/media/audio/9 Christmas EveL.mp3",
+                    "imgSrc": "../img/09song.jpg"
+                }, {
+                    "id": 10,
+                    "nameTrack": "Muéstrate",
+                    "nameArtist": "Gisela",
+                    "audioSrc": "../src/media/audio/10 Muéstrate.mp3",
+                    "imgSrc": "../img/10song.jpg"
+                },
+                {
+                    "id": 11,
+                    "nameTrack": "Shadow is the Light ",
+                    "nameArtist": "THE SIXTH LIE",
+                    "audioSrc": "../src/media/audio/11 Shadow is the Light.mp3",
+                    "imgSrc": "../img/11song.jpg"
                 }
             ],
         "videos":
@@ -337,6 +371,7 @@ function generatePlaylist() {
         element.appendChild(divImagen);
 
         let divInfo = document.createElement("div");
+        divInfo.classList.add("infoSong");
 
         let infoTitle = document.createElement("h3");
         infoTitle.textContent = song.nameTrack;
@@ -602,9 +637,9 @@ function changeToPreviousVideo(){
 }
 
 
-function playFirstVideo(){
-    console.log("en proceso")
-}
+// function playFirstVideo(){
+//     console.log("en proceso")
+// }
 
 
 function changeToAnotherVideoButtons(videoObject)
@@ -628,6 +663,8 @@ function changeToAnotherVideoButtons(videoObject)
     changeCurrentInfoVideo(newVideo);
     playVideo();
 }
+
+
 //MARAVITUPENDO
 // var c = document.getElementById("myCanvas");
 // var ctx = c.getContext("2d");

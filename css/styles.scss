@@ -166,8 +166,6 @@ body {
         #playerAudio {
           width: 100%;
           height: 300px;
-          // border: 2px solid blueviolet;
-          // background-image: url("../img/01song.jpg");
           background-image: url("../img/no-sound-md.png");
           @include propComunes();
         }
@@ -256,22 +254,23 @@ body {
         width: 80%;
         display: flex;
         flex-direction: column;
+        overflow-y: auto;
+
         #titlePlaylist {
           text-align: center;
           font-size: 2em;
         }
-
         #partPlaylist {
           height: 100%;
         }
         ol {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-template-rows: repeat(3, 1fr);
+          grid-template-columns: repeat(4, 1fr);
+          grid-template-rows: repeat(4, 1fr);
 
-          gap: 20px;
-          height: 100%;
-          width: 100%;
+          gap: 15px;
+          height: 80%;
+          width: 90%;
           padding-top: 2%;
 
           li.displaySong {
@@ -283,6 +282,7 @@ body {
             gap: 5%;
             color: whitesmoke;
             background-color: rgba(0, 0, 0, 0.705);
+
             @include defaultBorder(
               rgb(111, 0, 255),
               rgb(0, 0, 0),
@@ -309,6 +309,10 @@ body {
               @include propComunes();
               border-radius: 0%;
             }
+
+            .infoSong {
+              padding-right: 2%;
+            }
           }
           .nowPlayingMedia div:nth-child(2) {
             @include defaultBorder(
@@ -317,6 +321,7 @@ body {
               rgb(233, 86, 189)
             );
             padding: 7px;
+            margin-right: 2px;
 
             background: -webkit-linear-gradient(#eee, #333);
             background-clip: border-box;
@@ -383,36 +388,36 @@ body {
       width: 100%;
       height: 100vh;
       border: solid darkblue 2px;
-      // border-radius: 10px;
-      // padding: 4px;
-
-      // background-image: url("../img/carrete_line.png");
-      // background-repeat: repeat;
-      // background-position: center;
-      // background-size: contain;
 
       #containerVideo {
         display: flex;
         justify-content: center;
         align-items: center;
 
+        // background-image: url("../img/carrete_line.png");
+        // background-repeat: repeat;
+        // background-position: center;
+        // background-size: contain;
+        
         #playerVideo {
           width: 80%;
           height: 80%;
+          border-radius: 10px;
           // border: solid whitesmoke 1px;
           #container {
             width: 100%;
             height: 80%;
+
             background-image: url("../img/carrete_line.png");
-            // background-repeat: repeat;
-            background-size: auto;
+            background-repeat: repeat;
+            background-size: 20%;
+
             box-shadow: 4px 4px 6px black, -4px -4px 6px black;
             video {
               width: 80%;
               height: 100%;
               background-color: black;
-              // background-image: url("../img/01video.gif");
-              @include propComunes();
+              // @include propComunes();
               margin-left: 10%;
             }
           }

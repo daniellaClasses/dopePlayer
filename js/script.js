@@ -8,17 +8,27 @@ const DOM = {
     audioSection: document.querySelector("#audioSection"),
     audioPlayer: document.querySelector("#playerAudio").querySelector("audio"),
     playlistPart: document.querySelector("#partPlaylist"),
+    videoPlaylist: document.querySelector("#videoPlaylist"),
     songElection: document.querySelector(".displaySong"),
     videoSection: document.querySelector("#videoSection"),
     videoPlayer: document.querySelector("#playerVideo").querySelector("video"),
     play: document.querySelector(".play"),
+    playVideo: document.querySelector("#videoSection").querySelector(".play"),
     timeBar: document.querySelector(".timeBar"),
     stop: document.querySelector(".stop"),
+    stopVideo: document.querySelector("#videoSection").querySelector(".stop"),
     next: document.querySelector(".next"),
     prev: document.querySelector(".back"),
     volume: document.querySelector(".volume"),
     timeNow: document.querySelector(".timeNow"),
-    timeEnd: document.querySelector(".timeEnd")
+    timeEnd: document.querySelector(".timeEnd"),
+
+    timeBarVideo: document.querySelector("#videoSection").querySelector(".timeBar"),
+    nextVideo: document.querySelector("#videoSection").querySelector(".next"),
+    prevVideo: document.querySelector("#videoSection").querySelector(".back"),
+    volumeVideo: document.querySelector("#videoSection").querySelector(".volume"),
+    timeNowVideo: document.querySelector("#videoSection").querySelector(".timeNow"),
+    timeEndVideo: document.querySelector("#videoSection").querySelector(".timeEnd")
 };
 
 let playlistJSON = `
@@ -71,17 +81,26 @@ let playlistJSON = `
                 {
                     "id": 1,
                     "nameVideo": "No se habla de Bruno",
-                    "videoSrc": "../src/media/video/1 No se habla de Bruno (De Encanto).mp4"
+                    "videoSrc": "../src/media/video/1 No se habla de Bruno (De Encanto).mp4",
+                    "imgSrc": "../img/01video.gif"
                 },
                 {
                     "id": 2,
                     "nameVideo": "Haikyuu!! Season 2 Opening 4 - Fly High",
-                    "videoSrc": "../src/media/video/2 Haikyuu!! Season 2 Opening 4 - Fly High.mp4"
+                    "videoSrc": "../src/media/video/2 Haikyuu!! Season 2 Opening 4 - Fly High.mp4",
+                    "imgSrc": "../img/02video.gif"
                 },
                 {
                     "id": 3,
                     "nameVideo": "Arcane Opening -  League of Legends",
-                    "videoSrc": "../src/media/video/3 Arcane Opening -  League of Legends.mp4"
+                    "videoSrc": "../src/media/video/3 Arcane Opening -  League of Legends.mp4",
+                    "imgSrc": "../img/03video.gif"
+                },
+                {
+                    "id": 4,
+                    "nameVideo": "Enchantix Flora - Winx Club",
+                    "videoSrc": "../src/media/video/4 Winx Club Flora Enchantix.mp4",
+                    "imgSrc": "../img/04video.gif"
                 }
             ]
     }
@@ -93,7 +112,7 @@ function playlistSongs() {
     return listMediaSongs;
 }
 
-function playlistVideos(){
+function playlistVideos() {
     var listMedia = JSON.parse(playlistJSON);
     var listMediaVideos = listMedia.videos;
     return listMediaVideos;
@@ -104,12 +123,23 @@ function playlistVideos(){
     DOM.btnMusic.addEventListener("click", changePlayer);
     DOM.btnVideo.addEventListener("click", changePlayer);
     DOM.play.addEventListener("click", playAudio);
+    DOM.playVideo.addEventListener("click", playVideo);
     DOM.stop.addEventListener("click", audioStop);
+    DOM.stopVideo.addEventListener("click", videoStop);
     DOM.next.addEventListener("click", changeToNextSong);
+    DOM.nextVideo.addEventListener("click", changeToNextVideo);
     DOM.prev.addEventListener("click", changeToPreviousSong);
+    DOM.prevVideo.addEventListener("click", changeToPreviousVideo),
     DOM.volume.addEventListener("change", changeVolume);
+    DOM.volumeVideo.addEventListener("change", changeVolumeVideo),
     DOM.audioPlayer.addEventListener("loadstart", loadTime);
     DOM.audioPlayer.addEventListener("timeupdate", loadTime);
+    DOM.videoPlayer.addEventListener("loadstart", loadTimeVideo);
+    DOM.videoPlayer.addEventListener("timeupdate", loadTimeVideo);
+    // DOM.nextVideo.addEventListener("click", changeToNextVideo);
+    DOM.prevVideo.addEventListener("click", changeToPreviousVideo);
+    // DOM.volumeVideo.addEventListener("change", changeVolumeVideo);
+
 
     //generar playlist
     generatePlaylist();
@@ -124,12 +154,15 @@ function changePlayer() {
         videoStop();
         DOM.audioSection.classList.remove("hidePlayer");
         DOM.videoSection.classList.add("hidePlayer");
+        DOM.btnMusic.classList.add("active")
+        DOM.btnVideo.classList.remove("active")
 
-        // generatePlaylist();
     } else {
         audioStop();
         DOM.videoSection.classList.remove("hidePlayer");
         DOM.audioSection.classList.add("hidePlayer");
+        DOM.btnMusic.classList.remove("active")
+        DOM.btnVideo.classList.add("active")
     }
 }
 
@@ -157,11 +190,22 @@ function audioLoad() {
 
 
 function playVideo() {
-    DOM.videoPlayer.play();
+    DOM.playVideo.style.display = "none";
+    DOM.stopVideo.style.display = "flex";
+
+    if (DOM.videoPlayer.dataset.songVideo === "") {
+        playFirstSong();
+    }
+    else {
+        DOM.videoPlayer.play()
+    }
+
 }
 
 function videoStop() {
     DOM.videoPlayer.pause();
+    DOM.stopVideo.style.display = "none";
+    DOM.playVideo.style.display = "flex";
 }
 
 function videoLoad() {
@@ -173,6 +217,10 @@ function changeVolume() {
     DOM.audioPlayer.volume = level;
 }
 
+function changeVolumeVideo() {
+    let level = DOM.volumeVideo.value;
+    DOM.videoPlayer.volume = level;
+}
 //función especialita para reproducir la primera canción
 function playFirstSong() {
     let listMediaSongs = playlistSongs();
@@ -206,6 +254,26 @@ function loadTime() {
     } else {
         DOM.timeEnd.textContent = calculateTime(end);
         DOM.timeBar.max = end;
+    }
+}
+
+function loadTimeVideo(){
+    let now = DOM.videoPlayer.currentTime;
+    if (isNaN(now)) {
+        DOM.timeNowVideo.textContent = '00:00';
+        DOM.timeBarVideo.value = 0;
+    } else {
+        DOM.timeNowVideo.textContent = calculateTime(now);
+        DOM.timeBarVideo.value = now;
+    }
+    let end = DOM.videoPlayer.duration;
+
+    if (isNaN(end)) {
+        DOM.timeEndVideo.textContent = '00:00';
+        DOM.timeBarVideo.max = 0;
+    } else {
+        DOM.timeEndVideo.textContent = calculateTime(end);
+        DOM.timeBarVideo.max = end;
     }
 }
 
@@ -285,8 +353,27 @@ function generatePlaylist() {
     DOM.playlistPart.appendChild(elementsList);
 }
 
-function generateVideos(){
-    cleanPreviousContent(section);
+function generateVideos() {
+    cleanPreviousContent(DOM.videoPlaylist);
+
+    let titleVideoPlaylist = document.createElement("h1");
+    titleVideoPlaylist.textContent = "Vídeos disponibles";
+
+    DOM.videoPlaylist.appendChild(titleVideoPlaylist);
+
+    let listMediaVideos = playlistVideos();
+
+    listMediaVideos.forEach(video => {
+
+        let containerVideo = document.createElement("div")
+        containerVideo.classList.add("card")
+        containerVideo.addEventListener("click", changeCurrentVideo);
+        containerVideo.dataset.idVideo = video.id;
+
+        containerVideo.style.backgroundImage = "url(" + video.imgSrc + ")";
+
+        DOM.videoPlaylist.appendChild(containerVideo);
+    })
 }
 
 function cleanPreviousContent(section) {
@@ -301,8 +388,7 @@ function cleanPreviousContent(section) {
 function changeCurrentSong(event) {
     let selectedSong = this.dataset.idSong;
     let activeSong = document.querySelector(".nowPlayingMedia");
-    console.log(activeSong)
-    if (activeSong == null ) {
+    if (activeSong == null) {
         this.classList.add("nowPlayingMedia");
     }
     else {
@@ -310,7 +396,6 @@ function changeCurrentSong(event) {
         this.classList.toggle("nowPlayingMedia")
     }
 
-    // || activeSong.classList.contains("nowPlayingMedia")
     audioStop();
     listMediaSongs = playlistSongs();
 
@@ -336,7 +421,6 @@ function changeCurrentInfoSong(songObject) {
     let imgSrcSpace = DOM.audioPlayer.parentElement;
     imgSrcSpace.style.backgroundImage = "url(" + songObject.imgSrc + ")";
 }
-
 
 function changeToNextSong() {
 
@@ -399,8 +483,6 @@ function changeToPreviousSong() {
     }
 }
 
-
-
 function changeToAnotherSongButtons(songObject) {
     let idNew = songObject.id;
 
@@ -422,6 +504,130 @@ function changeToAnotherSongButtons(songObject) {
     playAudio();
 }
 
+
+function changeCurrentVideo(event) {
+    let selectedVideo = this.dataset.idVideo;
+    console.log(this)
+    let activeVideo = document.querySelector(".nowPlayingMedia");
+    if (activeVideo == null) {
+        this.classList.add("nowPlayingMedia");
+    }
+    else {
+        activeVideo.classList.toggle("nowPlayingMedia")
+        this.classList.toggle("nowPlayingMedia")
+    }
+
+    videoStop();
+    listMediaVideos = playlistVideos();
+
+    let newVideo = listMediaVideos.find(search => {
+        return search.id == selectedVideo;
+    });
+
+    let source = DOM.videoPlayer.querySelector("source");
+    source.setAttribute("src", newVideo.videoSrc);
+    DOM.videoPlayer.dataset.videoId = selectedVideo;
+    videoLoad();
+    changeCurrentInfoVideo(newVideo);
+    playVideo();
+
+}
+
+function changeCurrentInfoVideo(videoObject){
+    let trackNameSpace = document.querySelector("#nowPlayingVideo").querySelector(".nowPlayingTitle");
+    trackNameSpace.textContent = videoObject.nameVideo;
+}
+
+
+function changeToNextVideo() {
+
+
+    if (DOM.videoPlayer.dataset.videoId === "") {
+        playFirstVideo();
+    }
+    else {
+        let activeVideo = document.querySelector(".nowPlayingMedia");
+
+        let currentIdVideo = activeVideo.dataset.idVideo;
+        let nextVideoId = parseInt(currentIdVideo) + 1;
+
+        listMediaVideo = playlistVideos();
+        if (parseInt(nextVideoId) > parseInt(listMediaVideo.length)) {
+            nextVideoId = 1;
+            let newVideo = listMediaVideo.find(search => {
+                return search.id == nextVideoId;
+            });
+
+            changeToAnotherVideoButtons(newVideo);
+        }
+        else {
+            let newVideo = listMediaVideo.find(search => {
+                return search.id == nextVideoId;
+            });
+
+            changeToAnotherVideoButtons(newVideo);
+        }
+        activeVideo.classList.remove("nowPlayingMedia")
+    }
+}
+
+
+function changeToPreviousVideo(){
+    if (DOM.videoPlayer.dataset.videoId === "") {
+        playFirstVideo();
+    }
+    else {
+        let activeVideo = document.querySelector(".nowPlayingMedia");
+        let currentIdVideo = activeVideo.dataset.idVideo;
+        let nextVideoId = parseInt(currentIdVideo) - 1;
+
+        listMediaVideos = playlistVideos();
+        if (parseInt(nextVideoId) <= 0) {
+            nextVideoId = listMediaVideos.length;
+            let newVideo = listMediaVideos.find(search => {
+                return search.id == nextVideoId;
+            });
+
+            changeToAnotherVideoButtons(newVideo);
+        }
+        else {
+            let newVideo = listMediaVideos.find(search => {
+                return search.id == nextVideoId;
+            });
+
+            changeToAnotherVideoButtons(newVideo);
+        }
+        activeVideo.classList.remove("nowPlayingMedia");
+    }
+}
+
+
+function playFirstVideo(){
+    console.log("en proceso")
+}
+
+
+function changeToAnotherVideoButtons(videoObject)
+{
+    let idNew = videoObject.id;
+
+    let seleccion = document.querySelector(`[data-id-video='${idNew}']`)
+    seleccion.classList.add("nowPlayingMedia");
+
+    videoStop();
+    listMediaVideos = playlistVideos();
+
+    let newVideo = listMediaVideos.find(search => {
+        return search.id == idNew;
+    });
+
+    let source = DOM.videoPlayer.querySelector("source");
+    source.setAttribute("src", newVideo.videoSrc);
+    DOM.videoPlayer.dataset.videoId = idNew;
+    videoLoad();
+    changeCurrentInfoVideo(newVideo);
+    playVideo();
+}
 //MARAVITUPENDO
 // var c = document.getElementById("myCanvas");
 // var ctx = c.getContext("2d");
@@ -480,7 +686,6 @@ function changeToAnotherSongButtons(songObject) {
 //             ctx.stroke();
 //         }
 //     }
-
 //     this.x += this.vx;
 //     this.y += this.vy;
 // }

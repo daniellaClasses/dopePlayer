@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline+Text:wght@100;200;300;400;500;600;700;800;900&family=Comforter+Brush&family=Festive&family=Loved+by+the+King&family=Marck+Script&family=New+Rocker&family=Passions+Conflict&display=swap");
 * {
   margin: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Big Shoulders Inline Text", cursive;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -10,8 +15,8 @@ body {
   display: -ms-flexbox;
   display: flex;
   color: rgba(245, 245, 245, 0.87);
-  background: -webkit-gradient(linear, left top, right top, from(#b15408), color-stop(50%, #711f58), to(#25216b));
-  background: linear-gradient(90deg, #b15408 0%, #711f58 50%, #25216b 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#d67b31), color-stop(50%, #711f58), to(#25216b));
+  background: linear-gradient(90deg, #d67b31 0%, #711f58 50%, #25216b 100%);
 }
 
 body aside {
@@ -41,6 +46,7 @@ body aside #applicationName {
   height: 128px;
   border-radius: 5px;
   margin-top: 10%;
+  cursor: pointer;
   background-color: rgba(92, 102, 114, 0.144);
   border: solid rgba(255, 255, 255, 0.205) 2px;
   border-radius: 15px;
@@ -58,8 +64,44 @@ body aside #applicationName:active {
           transform: scale(1.01);
 }
 
+body aside #btnMusic.active,
+body aside #btnVideo.active,
+body aside #applicationName.active {
+  border: solid #c0be4c 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+          box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+}
+
+body aside #btnVideo {
+  padding: 5%;
+}
+
+body aside #applicationName {
+  font-size: 4.9em;
+  text-align: center;
+  padding-top: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-family: "Passions Conflict", cursive;
+  background: -webkit-linear-gradient(#c0be4c, #7be8f0, #e956bd);
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body aside #applicationName span {
+  font-size: 0.4em;
+  font-family: "Passions Conflict", cursive;
+  margin-top: -30px;
+  margin-right: 12px;
+  text-align: end;
+}
+
 body main {
-  width: 80%;
+  width: 90%;
 }
 
 body main #audioSection {
@@ -70,6 +112,7 @@ body main #audioSection {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  padding-right: 5%;
 }
 
 body main #audioSection #containerPlayer {
@@ -237,7 +280,7 @@ body main #audioSection #playerPlaylist ol {
   gap: 20px;
   height: 100%;
   width: 100%;
-  padding-top: 5%;
+  padding-top: 2%;
 }
 
 body main #audioSection #playerPlaylist ol li.displaySong {
@@ -376,13 +419,196 @@ body main #audioSection #playerPlaylist .tamaniosImg {
 }
 
 body main #videoSection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   margin: auto;
-  margin-top: 10px;
-  width: 91%;
-  height: 80vh;
+  width: 100%;
+  height: 100vh;
   border: solid darkblue 2px;
-  border-radius: 10px;
-  padding: 4px;
+}
+
+body main #videoSection #containerVideo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 80%;
+  height: 100%;
+}
+
+body main #videoSection #containerVideo #playerVideo {
+  width: 80%;
+  height: 80%;
+}
+
+body main #videoSection #containerVideo #playerVideo #container {
+  width: 100%;
+  height: 80%;
+  background-image: url("../img/carrete_line.png");
+  background-size: auto;
+  -webkit-box-shadow: 4px 4px 6px black, -4px -4px 6px black;
+          box-shadow: 4px 4px 6px black, -4px -4px 6px black;
+}
+
+body main #videoSection #containerVideo #playerVideo #container video {
+  width: 80%;
+  height: 100%;
+  background-color: black;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+  margin-left: 10%;
+}
+
+body main #videoSection #containerVideo #playerVideo #nowPlayingVideo {
+  margin-top: 9px;
+  text-align: center;
+}
+
+body main #videoSection #containerVideo #playerVideo .timeCounter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  height: 40px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body main #videoSection #containerVideo #playerVideo .timeCounter .timeNow,
+body main #videoSection #containerVideo #playerVideo .timeCounter .timeEnd {
+  font-weight: bold;
+}
+
+body main #videoSection #containerVideo #playerVideo .timeCounter input {
+  width: 80%;
+}
+
+body main #videoSection #containerVideo #playerVideo .controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .play,
+body main #videoSection #containerVideo #playerVideo .controls .stop,
+body main #videoSection #containerVideo #playerVideo .controls .back,
+body main #videoSection #containerVideo #playerVideo .controls .next {
+  cursor: pointer;
+  width: 25%;
+  height: 50px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .play:hover,
+body main #videoSection #containerVideo #playerVideo .controls .stop:hover,
+body main #videoSection #containerVideo #playerVideo .controls .back:hover,
+body main #videoSection #containerVideo #playerVideo .controls .next:hover {
+  -webkit-box-shadow: 2px 2px 4px black;
+          box-shadow: 2px 2px 4px black;
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .stop {
+  display: none;
+}
+
+body main #videoSection #containerVideo #playerVideo .volume {
+  margin-left: 25%;
+  width: 50%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding: 0;
+  border: solid black 0.1em;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+body main #videoSection #containerVideo #playerVideo .volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  border: solid #701e91 4px;
+  width: 15%;
+  border-radius: 15px;
+}
+
+body main #videoSection #containerVideo #playerVideo .volume::-ms-fill-upper {
+  appearance: none;
+  background-color: #701e91;
+}
+
+body main #videoSection #videoPlaylist {
+  width: 20%;
+  height: auto;
+  background-color: rgba(50, 33, 98, 0.313);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow-y: scroll;
+  overflow-anchor: initial;
+}
+
+body main #videoSection #videoPlaylist .card {
+  width: 80%;
+  height: 200px;
+  border: solid #292928 1px;
+  border: solid #1d102e 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.694), -2px -2px 4px transparent;
+          box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.694), -2px -2px 4px transparent;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 15px;
+}
+
+body main #videoSection #videoPlaylist .card.nowPlayingMedia {
+  border: solid #c0be4c 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+          box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
 }
 
 body main #audioSection.hidePlayer,

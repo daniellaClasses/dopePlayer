@@ -23,6 +23,9 @@ const DOM = {
     timeNow: document.querySelector(".timeNow"),
     timeEnd: document.querySelector(".timeEnd"),
 
+
+    // subtitulos: document.querySelector("#selectSubtitles"),
+
     timeBarVideo: document.querySelector("#videoSection").querySelector(".timeBar"),
     nextVideo: document.querySelector("#videoSection").querySelector(".next"),
     prevVideo: document.querySelector("#videoSection").querySelector(".back"),

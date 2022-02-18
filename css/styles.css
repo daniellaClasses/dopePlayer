@@ -90,6 +90,10 @@ body aside #applicationName {
   background-clip: border-box;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  border: solid #c0be4c 2px;
+  border-radius: 15px;
+  -webkit-box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
+          box-shadow: 2px 2px 4px #7be8f0, -2px -2px 4px #e956bd;
 }
 
 body aside #applicationName span {

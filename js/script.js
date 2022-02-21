@@ -5,32 +5,44 @@
 const DOM = {
     btnMusic: document.querySelector("#btnMusic"),
     btnVideo: document.querySelector("#btnVideo"),
+
+
     audioSection: document.querySelector("#audioSection"),
     audioPlayer: document.querySelector("#playerAudio").querySelector("audio"),
     playlistPart: document.querySelector("#partPlaylist"),
-    videoPlaylist: document.querySelector("#videoPlaylist"),
     songElection: document.querySelector(".displaySong"),
-    videoSection: document.querySelector("#videoSection"),
-    videoPlayer: document.querySelector("#playerVideo").querySelector("video"),
-    play: document.querySelector(".play"),
-    playVideo: document.querySelector("#videoSection").querySelector(".play"),
-    timeBar: document.querySelector(".timeBar"),
-    stop: document.querySelector(".stop"),
-    stopVideo: document.querySelector("#videoSection").querySelector(".stop"),
-    next: document.querySelector(".next"),
-    prev: document.querySelector(".back"),
-    volume: document.querySelector(".volume"),
     timeNow: document.querySelector(".timeNow"),
+    timeBar: document.querySelector(".timeBar"),
     timeEnd: document.querySelector(".timeEnd"),
+    prev: document.querySelector(".back"),
+    play: document.querySelector(".play"),
+    stop: document.querySelector(".stop"),
+    next: document.querySelector(".next"),
+    mute: document.querySelector(".muteAudio"),
+    lowAudio: document.querySelector(".lowVolumeAudio"),
+    volume: document.querySelector(".volume"),
+    highAudio: document.querySelector(".highVolumeAudio"),
+    repeat: document.querySelector(".repeatAudio"),
+    random: document.querySelector(".randomAudio"),
 
+    selectSubtitles: document.querySelector("#selectSubtitles"),
 
-    // subtitulos: document.querySelector("#selectSubtitles"),
+    videoPlayer: document.querySelector("#playerVideo").querySelector("video"),
+    videoPlaylist: document.querySelector("#videoPlaylist"),
+    videoSection: document.querySelector("#videoSection"),
 
-    timeBarVideo: document.querySelector("#videoSection").querySelector(".timeBar"),
-    nextVideo: document.querySelector("#videoSection").querySelector(".next"),
     prevVideo: document.querySelector("#videoSection").querySelector(".back"),
+    playVideo: document.querySelector("#videoSection").querySelector(".play"),
+    stopVideo: document.querySelector("#videoSection").querySelector(".stop"),
+    nextVideo: document.querySelector("#videoSection").querySelector(".next"),
+    muteVideo: document.querySelector("#videoSection").querySelector(".muteVideo"),
+    repeatVideo: document.querySelector("#videoSection").querySelector(".repeatVideo"),
+    randomVideo: document.querySelector("#videoSection").querySelector(".randomVideo"),
+    lowVideo: document.querySelector("#videoSection").querySelector(".lowVolumeVideo"),
     volumeVideo: document.querySelector("#videoSection").querySelector(".volume"),
+    highVideo: document.querySelector("#videoSection").querySelector(".highVolumeVideo"),
     timeNowVideo: document.querySelector("#videoSection").querySelector(".timeNow"),
+    timeBarVideo: document.querySelector("#videoSection").querySelector(".timeBar"),
     timeEndVideo: document.querySelector("#videoSection").querySelector(".timeEnd")
 };
 
@@ -159,30 +171,63 @@ function playlistVideos() {
 (function () {
     DOM.btnMusic.addEventListener("click", changePlayer);
     DOM.btnVideo.addEventListener("click", changePlayer);
+
+    //---------------------------- AUDIO ------------------------------
     DOM.play.addEventListener("click", playAudio);
-    DOM.playVideo.addEventListener("click", playVideo);
     DOM.stop.addEventListener("click", audioStop);
-    DOM.stopVideo.addEventListener("click", videoStop);
     DOM.next.addEventListener("click", changeToNextSong);
-    DOM.nextVideo.addEventListener("click", changeToNextVideo);
     DOM.prev.addEventListener("click", changeToPreviousSong);
-    DOM.prevVideo.addEventListener("click", changeToPreviousVideo),
     DOM.volume.addEventListener("change", changeVolume);
-    DOM.volumeVideo.addEventListener("change", changeVolumeVideo),
+
+    //---------------------------- ESTADOS AUDIO ------------------------------
     DOM.audioPlayer.addEventListener("loadstart", loadTime);
     DOM.audioPlayer.addEventListener("timeupdate", loadTime);
-    DOM.videoPlayer.addEventListener("loadstart", loadTimeVideo);
-    DOM.videoPlayer.addEventListener("timeupdate", loadTimeVideo);
-    // DOM.nextVideo.addEventListener("click", changeToNextVideo);
-    DOM.prevVideo.addEventListener("click", changeToPreviousVideo);
-    // DOM.volumeVideo.addEventListener("change", changeVolumeVideo);
+    DOM.timeBar.addEventListener("input", changeCurrentMomentSong);
+    DOM.repeat.addEventListener("click", repeatSameSong);
+    DOM.random.addEventListener("click", playRandomAudio);
+    DOM.mute.addEventListener("click", muteAudio);
+    DOM.lowAudio.addEventListener("click", lowLessAudio);
+    DOM.highAudio.addEventListener("click", highMoreAudio);
 
+    //----------------------------------------- VIDEO ------------------------------------
+    DOM.videoPlayer.addEventListener("timeupdate", loadTimeVideo);
+
+    DOM.nextVideo.addEventListener("click", changeToNextVideo);
+    DOM.playVideo.addEventListener("click", playVideo);
+    DOM.stopVideo.addEventListener("click", videoStop);
+    DOM.prevVideo.addEventListener("click", changeToPreviousVideo);
+    DOM.volumeVideo.addEventListener("change", changeVolumeVideo);
+
+
+    // ESTADOS VIDEO
+    DOM.videoPlayer.addEventListener("loadstart", loadTimeVideo);
+    DOM.volumeVideo.addEventListener("change", changeVolumeVideo);
+    DOM.repeatVideo.addEventListener("click", repeatSameVideo);
+    DOM.randomVideo.addEventListener("click", playRandomVideo);
+    DOM.muteVideo.addEventListener("click", muteVideo);
+    DOM.lowVideo.addEventListener("click", lowLessVideo);
+    DOM.highVideo.addEventListener("click", highMoreVideo);
+    DOM.timeBarVideo.addEventListener("input", changeCurrentMomentVideo);
+
+    //para cambiar la barra de proceso del input según cambie, el evento es "input"
 
     //generar playlist
     generatePlaylist();
 
     //generar lista vídeos
     generateVideos();
+
+
+    let noSub = document.createElement("option");
+    noSub.textContent = "Subtítulos";
+    let espSub = document.createElement("option");
+    espSub.textContent = "Español";
+    let enSub = document.createElement("option");
+    enSub.textContent = "Inglés";
+
+    DOM.selectSubtitles.appendChild(noSub);
+    DOM.selectSubtitles.appendChild(espSub);
+    DOM.selectSubtitles.appendChild(enSub);
 }
 )();
 
@@ -206,7 +251,7 @@ function changePlayer() {
 function playAudio() {
     DOM.play.style.display = "none";
     DOM.stop.style.display = "flex";
-    if (DOM.audioPlayer.dataset.songId === "") {
+    if (DOM.audioPlayer.dataset.songId == null) {
         playFirstSong();
     }
     else {
@@ -230,8 +275,8 @@ function playVideo() {
     DOM.playVideo.style.display = "none";
     DOM.stopVideo.style.display = "flex";
 
-    if (DOM.videoPlayer.dataset.songVideo === "") {
-        playFirstSong();
+    if (DOM.videoPlayer.dataset.videoId == null) {
+        playFirstVideo();
     }
     else {
         DOM.videoPlayer.play()
@@ -247,6 +292,7 @@ function videoStop() {
 
 function videoLoad() {
     DOM.videoPlayer.load();
+
 }
 
 function changeVolume() {
@@ -254,10 +300,44 @@ function changeVolume() {
     DOM.audioPlayer.volume = level;
 }
 
+function lowLessAudio() {
+    let level = DOM.volume.value;
+    level = parseFloat(level)
+    level -= 0.1;
+    DOM.volume.value = level;
+    changeVolume();
+}
+
+function highMoreAudio() {
+    let level = DOM.volume.value;
+    level = parseFloat(level)
+    level += 0.1;
+    DOM.volume.value = level;
+    changeVolume();
+}
+
 function changeVolumeVideo() {
     let level = DOM.volumeVideo.value;
     DOM.videoPlayer.volume = level;
 }
+
+function lowLessVideo() {
+    let level = DOM.volumeVideo.value;
+    level = parseFloat(level)
+    level -= 0.1;
+    DOM.volumeVideo.value = level;
+    changeVolumeVideo();
+}
+
+function highMoreVideo() {
+    let level = DOM.volumeVideo.value;
+    level = parseFloat(level)
+    level += 0.1;
+    DOM.volumeVideo.value = level;
+    changeVolumeVideo();
+}
+
+
 //función especialita para reproducir la primera canción
 function playFirstSong() {
     let listMediaSongs = playlistSongs();
@@ -265,8 +345,7 @@ function playFirstSong() {
     let firstSongOfTheList = document.querySelector("li");
     firstSongOfTheList.classList.add("nowPlayingMedia");
 
-    let source = DOM.audioPlayer.querySelector("source");
-    source.setAttribute("src", firstSong.audioSrc);
+    changeSrc(DOM.audioPlayer, firstSong.audioSrc);
     DOM.audioPlayer.dataset.songId = firstSong.id;
     audioLoad();
     changeCurrentInfoSong(firstSong);
@@ -294,7 +373,7 @@ function loadTime() {
     }
 }
 
-function loadTimeVideo(){
+function loadTimeVideo() {
     let now = DOM.videoPlayer.currentTime;
     if (isNaN(now)) {
         DOM.timeNowVideo.textContent = '00:00';
@@ -418,8 +497,7 @@ function cleanPreviousContent(section) {
     if (section.hasChildNodes) {
         section.childNodes.forEach(element => {
             element.parentElement.replaceChildren();
-        }
-        );
+        });
     }
 }
 
@@ -441,8 +519,8 @@ function changeCurrentSong(event) {
         return search.id == selectedSong;
     });
 
-    let source = DOM.audioPlayer.querySelector("source");
-    source.setAttribute("src", newSong.audioSrc);
+    changeSrc(DOM.audioPlayer, newSong.audioSrc);
+
     DOM.audioPlayer.dataset.songId = selectedSong;
     audioLoad();
     changeCurrentInfoSong(newSong);
@@ -462,7 +540,7 @@ function changeCurrentInfoSong(songObject) {
 
 function changeToNextSong() {
 
-    if (DOM.audioPlayer.dataset.songId === "") {
+    if (DOM.audioPlayer.dataset.songId === undefined) {
         playFirstSong();
     }
     else {
@@ -493,7 +571,7 @@ function changeToNextSong() {
 
 function changeToPreviousSong() {
 
-    if (DOM.audioPlayer.dataset.songId === "") {
+    if (DOM.audioPlayer.dataset.songId === undefined) {
         playFirstSong();
     }
     else {
@@ -534,18 +612,101 @@ function changeToAnotherSongButtons(songObject) {
         return search.id == idNew;
     });
 
-    let source = DOM.audioPlayer.querySelector("source");
-    source.setAttribute("src", newSong.audioSrc);
+    changeSrc(DOM.audioPlayer, newSong.audioSrc);
+
     DOM.audioPlayer.dataset.songId = idNew;
     audioLoad();
     changeCurrentInfoSong(newSong);
     playAudio();
 }
 
+// AUDIO AUDIO AUDIO AUDIO AUDIO ---------------------------------------------------
+
+function changeCurrentMomentSong() {
+    let moment = DOM.timeBar.value;
+    DOM.audioPlayer.currentTime = moment;
+}
+
+function repeatSameSong() {
+    audioLoad();
+    playAudio();
+}
+
+// funcion para reproducir un audio de la lista aleatoriamente.
+function playRandomAudio() {
+    let listMediaAudios = playlistSongs();
+    let totalAudios = listMediaAudios.length;
+
+    let audioActive = DOM.audioPlayer.dataset.songId;
+
+    let randomId;
+    if (audioActive == null) {
+        randomId = Math.floor(Math.random() * totalAudios + 1);
+    } else {
+        do {
+            randomId = Math.floor(Math.random() * totalAudios + 1);
+        } while (randomId == audioActive);
+    }
+    playAudioId(randomId);
+}
+
+// funcion para reproducir un audio por su id.
+function playAudioId(inputId) {
+
+    let listMediaAudios = playlistSongs();
+
+    let audio = listMediaAudios.find(element => element.id == inputId);
+
+    let audioOnList = DOM.audioSection.querySelector(`[data-id-song='${inputId}']`);
+    nowPlayingMediaCleaner(DOM.audioSection);
+    audioOnList.classList.add("nowPlayingMedia");
+
+    changeSrc(DOM.audioPlayer, audio.audioSrc);
+
+    DOM.audioPlayer.dataset.songId = audio.id;
+
+    audioLoad();
+    changeCurrentInfoSong(audio);
+    playAudio();
+}
+
+// funcion para mutear el audio
+function muteAudio() {
+
+    let muteNow = DOM.volume.dataset.muteMode;
+
+    if (muteNow == null || muteNow == "off") {
+
+        DOM.audioPlayer.volume = 0;
+        DOM.volume.dataset.muteMode = "on";
+        DOM.volume.setAttribute("disabled", true);
+
+    } else {
+
+        let level = DOM.volume.value;
+
+        if (level == 0) {
+            DOM.audioPlayer.volume = 0.5;
+            DOM.volume.value = 0.5;
+        }
+        else {
+            DOM.audioPlayer.volume = level;
+        }
+
+        DOM.volume.dataset.muteMode = "off";
+        DOM.volume.removeAttribute("disabled");
+    }
+}
+
+// VIDEO VIDEO VIDEO VIDEO VIDEO VIDEO VIDEO
+
+function changeCurrentMomentVideo() {
+    let moment = DOM.timeBarVideo.value;
+    DOM.videoPlayer.currentTime = moment;
+}
 
 function changeCurrentVideo(event) {
     let selectedVideo = this.dataset.idVideo;
-    console.log(this)
     let activeVideo = document.querySelector(".nowPlayingMedia");
     if (activeVideo == null) {
         this.classList.add("nowPlayingMedia");
@@ -562,25 +723,61 @@ function changeCurrentVideo(event) {
         return search.id == selectedVideo;
     });
 
-    let source = DOM.videoPlayer.querySelector("source");
-    source.setAttribute("src", newVideo.videoSrc);
+    changeSrc(DOM.videoPlayer, newVideo.videoSrc)
+
     DOM.videoPlayer.dataset.videoId = selectedVideo;
+
+    console.log(DOM.videoPlayer.dataset.videoId)
+
+    if (DOM.videoPlayer.dataset.videoId == 4) {
+        DOM.selectSubtitles.removeAttribute("disabled");
+        selectSubtitles.addEventListener("change", function(){
+            if (selectSubtitles.value == "Subtítulos") {
+                DOM.videoPlayer.querySelector("track").remove();
+            }
+            let subTrack;
+            if (DOM.videoPlayer.querySelector("track") == null) {
+                
+                subTrack = document.createElement("track");
+
+                
+            if (selectSubtitles.value == "Español") {
+                subTrack.setAttribute("kind", "captions");
+                subTrack.setAttribute("src", "../src/media/subtitles/enchantixSub.vtt");
+                subTrack.setAttribute("srclang", "es");
+                subTrack.setAttribute("label", "español")
+                subTrack.setAttribute("default", "true")
+                let unuseful = DOM.videoPlayer.querySelector("track");
+                DOM.videoPlayer.appendChild(subTrack)
+            }
+
+            if (selectSubtitles.value == "Inglés") {
+                subTrack.setAttribute("kind", "captions");
+                subTrack.setAttribute("src", "src", "../src/media/subtitles/enchantixSubEng.vtt");
+                subTrack.setAttribute("srclang", "en");
+                subTrack.setAttribute("label", "ingles")
+                subTrack.setAttribute("default", "true")
+                let unuseful = DOM.videoPlayer.querySelector("track");
+                DOM.videoPlayer.appendChild(subTrack)
+            }
+            }
+        })
+    }
+
+
     videoLoad();
     changeCurrentInfoVideo(newVideo);
     playVideo();
-
 }
 
-function changeCurrentInfoVideo(videoObject){
+function changeCurrentInfoVideo(videoObject) {
     let trackNameSpace = document.querySelector("#nowPlayingVideo").querySelector(".nowPlayingTitle");
     trackNameSpace.textContent = videoObject.nameVideo;
 }
 
-
 function changeToNextVideo() {
 
-
-    if (DOM.videoPlayer.dataset.videoId === "") {
+    if (DOM.videoPlayer.dataset.videoId === undefined) {
         playFirstVideo();
     }
     else {
@@ -609,18 +806,21 @@ function changeToNextVideo() {
     }
 }
 
-
-function changeToPreviousVideo(){
-    if (DOM.videoPlayer.dataset.videoId === "") {
-        playFirstVideo();
+function changeToPreviousVideo() {
+    if (DOM.videoPlayer.dataset.videoId === undefined) {
+        // playFirstVideo();
+        listMediaVideos = playlistVideos();
+        playVideoId(listMediaVideos.length);
     }
     else {
+
         let activeVideo = document.querySelector(".nowPlayingMedia");
         let currentIdVideo = activeVideo.dataset.idVideo;
         let nextVideoId = parseInt(currentIdVideo) - 1;
-
         listMediaVideos = playlistVideos();
+
         if (parseInt(nextVideoId) <= 0) {
+
             nextVideoId = listMediaVideos.length;
             let newVideo = listMediaVideos.find(search => {
                 return search.id == nextVideoId;
@@ -639,33 +839,132 @@ function changeToPreviousVideo(){
     }
 }
 
+function playFirstVideo() {
 
-// function playFirstVideo(){
-//     console.log("en proceso")
-// }
+    let listMediaVideos = playlistVideos();
+    let firstVideo = listMediaVideos[0];
 
+    let firstVideoOfTheList = DOM.videoSection.querySelector(".card");
+    firstVideoOfTheList.classList.add("nowPlayingMedia");
 
-function changeToAnotherVideoButtons(videoObject)
-{
+    changeSrc(DOM.videoPlayer, firstVideo.videoSrc);
+
+    DOM.videoPlayer.dataset.videoId = firstVideo.id;
+
+    videoLoad();
+    changeCurrentInfoVideo(firstVideo);
+    playVideo();
+
+}
+
+function changeToAnotherVideoButtons(videoObject) {
     let idNew = videoObject.id;
 
     let seleccion = document.querySelector(`[data-id-video='${idNew}']`)
     seleccion.classList.add("nowPlayingMedia");
 
     videoStop();
-    listMediaVideos = playlistVideos();
+    let listMediaVideos = playlistVideos();
 
     let newVideo = listMediaVideos.find(search => {
         return search.id == idNew;
     });
 
-    let source = DOM.videoPlayer.querySelector("source");
-    source.setAttribute("src", newVideo.videoSrc);
+    changeSrc(DOM.videoPlayer, newVideo.videoSrc);
+
     DOM.videoPlayer.dataset.videoId = idNew;
+
     videoLoad();
     changeCurrentInfoVideo(newVideo);
     playVideo();
 }
+
+
+function repeatSameVideo() {
+    videoLoad();
+    playVideo();
+}
+
+// función para reproducir un video de la lista aleatoriamente.
+function playRandomVideo() {
+    let listMediaVideos = playlistVideos();
+    let totalVideos = listMediaVideos.length;
+
+    let videoActive = DOM.videoPlayer.dataset.videoId;
+
+    let randomId;
+    if (videoActive == null) {
+        randomId = Math.floor(Math.random() * totalVideos + 1);
+    } else {
+        do {
+            randomId = Math.floor(Math.random() * totalVideos + 1);
+        } while (randomId == videoActive);
+    }
+    playVideoId(randomId);
+}
+
+// funcion para reproducir un video por su id.
+function playVideoId(inputId) {
+
+    let listMediaVideos = playlistVideos();
+
+    let video = listMediaVideos.find(element => element.id == inputId);
+    // let video = listMediaVideos[inputId];
+
+    let videoOnList = DOM.videoSection.querySelector(`[data-id-video='${inputId}']`);
+    nowPlayingMediaCleaner(DOM.videoSection);
+    videoOnList.classList.add("nowPlayingMedia");
+
+    changeSrc(DOM.videoPlayer, video.videoSrc);
+
+    DOM.videoPlayer.dataset.videoId = video.id;
+
+    videoLoad();
+    changeCurrentInfoVideo(video);
+    playVideo();
+}
+
+// funcion para mutear el video
+function muteVideo() {
+
+    let muteNow = DOM.volumeVideo.dataset.muteMode;
+
+    if (muteNow == null || muteNow == "off") {
+
+        DOM.videoPlayer.volume = 0;
+        DOM.volumeVideo.dataset.muteMode = "on";
+        DOM.volumeVideo.setAttribute("disabled", true);
+
+    } else {
+
+        let level = DOM.volumeVideo.value;
+        DOM.videoPlayer.volume = level;
+        DOM.volumeVideo.dataset.muteMode = "off";
+        DOM.volumeVideo.removeAttribute("disabled");
+
+    }
+}
+
+//-------------  COMUNES COMUNES COMUNES COMUNES COMUNES -------------------------------------------------------------------
+
+// funcion para cambiar el atributo src
+function changeSrc(player, inputSrc) {
+
+    let source = player.querySelector("source");
+    source.setAttribute("src", inputSrc);
+}
+
+// funcion para limpiar la clase nowPlayingMedia.
+function nowPlayingMediaCleaner(section) {
+    let nows = section.querySelectorAll(".nowPlayingMedia");
+    nows.forEach(element => element.classList.remove("nowPlayingMedia"));
+}
+
+function checkSubtitles(){
+    DOM.videoPlayer.dataset.videoId;
+}
+
+
 
 
 //MARAVITUPENDO

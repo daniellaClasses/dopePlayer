@@ -11,6 +11,7 @@
 }
 
 body {
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,8 +33,9 @@ body aside {
           align-items: center;
   gap: 3%;
   width: 10%;
+  min-width: 150px;
   height: 100vh;
-  background-color: rgba(25, 59, 212, 0.39);
+  background-color: rgba(22, 35, 90, 0.884);
 }
 
 body aside #btnMusic,
@@ -106,6 +108,7 @@ body aside #applicationName span {
 
 body main {
   width: 90%;
+  min-height: 100vh;
 }
 
 body main #audioSection {
@@ -116,10 +119,13 @@ body main #audioSection {
   display: flex;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  padding-right: 5%;
 }
 
 body main #audioSection #containerPlayer {
+  width: 25%;
+  min-width: 250px;
+  height: 100vh;
+  min-height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -127,8 +133,6 @@ body main #audioSection #containerPlayer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -136,14 +140,14 @@ body main #audioSection #containerPlayer {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   padding: 10px;
-  width: 25%;
-  height: 100%;
   border: solid rgba(255, 255, 255, 0.205) 2px;
   border-radius: 15px;
   -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
           box-shadow: 2px 2px 4px black, -2px -2px 4px rgba(245, 245, 245, 0.274);
+  border-top: none;
+  border-bottom: none;
   border-radius: 0px 0px 10px 0px;
-  background-color: rgba(25, 59, 212, 0.39);
+  background-color: rgba(22, 35, 90, 0.884);
 }
 
 body main #audioSection #containerPlayer #playerAudio {
@@ -154,6 +158,9 @@ body main #audioSection #containerPlayer #playerAudio {
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 15px;
+  background-size: cover;
+  -webkit-box-shadow: 2px 2px 4px black, -2px -2px 4px black;
+          box-shadow: 2px 2px 4px black, -2px -2px 4px black;
 }
 
 body main #audioSection #containerPlayer #nowPlayingSong {
@@ -164,13 +171,13 @@ body main #audioSection #containerPlayer .timeCounter {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 300px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
   height: 40px;
   padding-left: 5px;
   padding-right: 5px;
@@ -179,10 +186,13 @@ body main #audioSection #containerPlayer .timeCounter {
 body main #audioSection #containerPlayer .timeCounter .timeNow,
 body main #audioSection #containerPlayer .timeCounter .timeEnd {
   font-weight: bold;
+  font-size-adjust: auto;
 }
 
 body main #audioSection #containerPlayer .timeCounter input {
-  width: 80%;
+  margin-left: 1%;
+  width: 70%;
+  margin-right: 1%;
 }
 
 body main #audioSection #containerPlayer .controls {
@@ -193,7 +203,9 @@ body main #audioSection #containerPlayer .controls {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 300px;
+  width: 100%;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 body main #audioSection #containerPlayer .controls .play,
@@ -221,16 +233,40 @@ body main #audioSection #containerPlayer .controls .play:hover,
 body main #audioSection #containerPlayer .controls .stop:hover,
 body main #audioSection #containerPlayer .controls .back:hover,
 body main #audioSection #containerPlayer .controls .next:hover {
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
   -webkit-transform: scale(1.06);
           transform: scale(1.06);
+}
+
+body main #audioSection #containerPlayer .controls .play:active,
+body main #audioSection #containerPlayer .controls .stop:active,
+body main #audioSection #containerPlayer .controls .back:active,
+body main #audioSection #containerPlayer .controls .next:active {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 
 body main #audioSection #containerPlayer .controls .stop {
   display: none;
 }
 
-body main #audioSection #containerPlayer .volume {
-  width: 50%;
+body main #audioSection #containerPlayer .volumenes {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body main #audioSection #containerPlayer .volumenes .volume {
+  width: 20%;
+  height: 20px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -240,18 +276,29 @@ body main #audioSection #containerPlayer .volume {
   cursor: pointer;
 }
 
-body main #audioSection #containerPlayer .volume::-webkit-slider-thumb {
+body main #audioSection #containerPlayer .volumenes .volume::-webkit-slider-thumb {
   -webkit-appearance: none;
           appearance: none;
-  border: solid #701e91 4px;
+  border: solid #701e91 6px;
   width: 15%;
   border-radius: 15px;
 }
 
-body main #audioSection #containerPlayer .volume::-ms-fill-upper {
+body main #audioSection #containerPlayer .volumenes .volume::-ms-fill-upper {
   appearance: none;
   background-color: #701e91;
   border: solid #5a22b4 1em;
+}
+
+body main #audioSection #containerPlayer .extra-modules {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 15px;
 }
 
 body main #audioSection #playerPlaylist {
@@ -263,7 +310,21 @@ body main #audioSection #playerPlaylist {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-right: 1%;
   overflow-y: auto;
+}
+
+body main #audioSection #playerPlaylist::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+
+body main #audioSection #playerPlaylist::-webkit-scrollbar-thumb {
+  width: 2px;
+  background-color: #3a1ea1;
+  border-radius: 50px;
+  -webkit-box-shadow: -1px -1px 3px 1px #6d6c6c;
+          box-shadow: -1px -1px 3px 1px #6d6c6c;
 }
 
 body main #audioSection #playerPlaylist #titlePlaylist {
@@ -276,22 +337,22 @@ body main #audioSection #playerPlaylist #partPlaylist {
 }
 
 body main #audioSection #playerPlaylist ol {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[4];
-      grid-template-columns: repeat(4, 1fr);
-  -ms-grid-rows: (1fr)[4];
-      grid-template-rows: repeat(4, 1fr);
-  gap: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  row-gap: 20px;
   height: 80%;
-  width: 90%;
+  width: 100%;
   padding-top: 2%;
 }
 
 body main #audioSection #playerPlaylist ol li.displaySong {
-  margin-bottom: 20px;
-  height: 100%;
-  width: 100%;
+  height: 25%;
+  width: 32%;
+  min-width: 300px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -449,13 +510,15 @@ body main #videoSection #containerVideo {
       -ms-flex-align: center;
           align-items: center;
   width: 80%;
+  height: 100vh;
+  width: 80%;
   height: 100%;
 }
 
 body main #videoSection #containerVideo #playerVideo {
-  width: 80%;
+  width: 100%;
   height: 80%;
-  border-radius: 10px;
+  padding: 50px;
 }
 
 body main #videoSection #containerVideo #playerVideo #container {
@@ -501,6 +564,7 @@ body main #videoSection #containerVideo #playerVideo .timeCounter {
 body main #videoSection #containerVideo #playerVideo .timeCounter .timeNow,
 body main #videoSection #containerVideo #playerVideo .timeCounter .timeEnd {
   font-weight: bold;
+  margin: 10px;
 }
 
 body main #videoSection #containerVideo #playerVideo .timeCounter input {
@@ -515,21 +579,43 @@ body main #videoSection #containerVideo #playerVideo .controls {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
 }
 
 body main #videoSection #containerVideo #playerVideo .controls .play,
 body main #videoSection #containerVideo #playerVideo .controls .stop,
 body main #videoSection #containerVideo #playerVideo .controls .back,
-body main #videoSection #containerVideo #playerVideo .controls .next {
+body main #videoSection #containerVideo #playerVideo .controls .next
+, body main #videoSection #containerVideo #playerVideo .controls svg {
   cursor: pointer;
-  width: 25%;
-  height: 50px;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  color: whitesmoke;
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .play:hover,
+body main #videoSection #containerVideo #playerVideo .controls .stop:hover,
+body main #videoSection #containerVideo #playerVideo .controls .back:hover,
+body main #videoSection #containerVideo #playerVideo .controls .next:hover
+, body main #videoSection #containerVideo #playerVideo .controls svg:hover {
+  -webkit-transform: scale(1.06);
+          transform: scale(1.06);
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .play:active,
+body main #videoSection #containerVideo #playerVideo .controls .stop:active,
+body main #videoSection #containerVideo #playerVideo .controls .back:active,
+body main #videoSection #containerVideo #playerVideo .controls .next:active
+, body main #videoSection #containerVideo #playerVideo .controls svg:active {
+  -webkit-transform: scale(1.08);
+          transform: scale(1.08);
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .stop {
+  display: none;
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .volumes {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -541,41 +627,30 @@ body main #videoSection #containerVideo #playerVideo .controls .next {
           justify-content: center;
 }
 
-body main #videoSection #containerVideo #playerVideo .controls .play:hover,
-body main #videoSection #containerVideo #playerVideo .controls .stop:hover,
-body main #videoSection #containerVideo #playerVideo .controls .back:hover,
-body main #videoSection #containerVideo #playerVideo .controls .next:hover {
-  -webkit-box-shadow: 2px 2px 4px black;
-          box-shadow: 2px 2px 4px black;
-  -webkit-transform: scale(1.06);
-          transform: scale(1.06);
-}
-
-body main #videoSection #containerVideo #playerVideo .controls .stop {
-  display: none;
-}
-
-body main #videoSection #containerVideo #playerVideo .volume {
-  margin-left: 25%;
+body main #videoSection #containerVideo #playerVideo .controls .volumes .volume {
   width: 50%;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  padding: 0;
   border: solid black 0.1em;
   border-radius: 15px;
   cursor: pointer;
 }
 
-body main #videoSection #containerVideo #playerVideo .volume::-webkit-slider-thumb {
+body main #videoSection #containerVideo #playerVideo .controls .volumes .volume::-webkit-slider-thumb {
   -webkit-appearance: none;
           appearance: none;
-  border: solid #701e91 4px;
+  border: solid #701e91 8px;
   width: 15%;
   border-radius: 15px;
 }
 
-body main #videoSection #containerVideo #playerVideo .volume::-ms-fill-upper {
+body main #videoSection #containerVideo #playerVideo .controls .volumes .volume::-webkit-slider-thumb:active {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+
+body main #videoSection #containerVideo #playerVideo .controls .volumes .volume::-ms-fill-upper {
   appearance: none;
   background-color: #701e91;
 }
@@ -583,7 +658,9 @@ body main #videoSection #containerVideo #playerVideo .volume::-ms-fill-upper {
 body main #videoSection #videoPlaylist {
   width: 20%;
   height: auto;
-  background-color: rgba(50, 33, 98, 0.313);
+  background-color: rgba(38, 21, 61, 0.349);
+  -webkit-box-shadow: -2px 0px px #212249;
+          box-shadow: -2px 0px px #212249;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -592,8 +669,20 @@ body main #videoSection #videoPlaylist {
           justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  overflow-y: scroll;
-  overflow-anchor: initial;
+  overflow-y: auto;
+}
+
+body main #videoSection #videoPlaylist::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+
+body main #videoSection #videoPlaylist::-webkit-scrollbar-thumb {
+  width: 2px;
+  background-color: #3a1ea1;
+  border-radius: 50px;
+  -webkit-box-shadow: -1px -1px 3px 1px #6d6c6c;
+          box-shadow: -1px -1px 3px 1px #6d6c6c;
 }
 
 body main #videoSection #videoPlaylist .card {
@@ -621,6 +710,10 @@ body main #videoSection #videoPlaylist .card.nowPlayingMedia {
 
 body main #audioSection.hidePlayer,
 body main #videoSection.hidePlayer {
+  display: none;
+}
+
+body .hideElement {
   display: none;
 }
 /*# sourceMappingURL=styles.css.map */

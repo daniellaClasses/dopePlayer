@@ -753,7 +753,7 @@ function changeCurrentVideo(event) {
 
             if (selectSubtitles.value == "Inglés") {
                 subTrack.setAttribute("kind", "captions");
-                subTrack.setAttribute("src", "src", "../src/media/subtitles/enchantixSubEng.vtt");
+                subTrack.setAttribute("src", "../src/media/subtitles/enchantixSubEng.vtt");
                 subTrack.setAttribute("srclang", "en");
                 subTrack.setAttribute("label", "ingles")
                 subTrack.setAttribute("default", "true")
